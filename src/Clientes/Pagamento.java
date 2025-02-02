@@ -2,6 +2,7 @@ package Clientes;
 
 import Staff.Prescricoes.Preco;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 public class Pagamento {
@@ -20,12 +21,13 @@ public class Pagamento {
     {
         this.pago=pago;
     }
-// get e set do atributo "pago" //
 
+
+    DecimalFormat df = new DecimalFormat("#.00");
 // set que checa se o valor está vencido //
 //TODO: habilidade de settar o Localdate de getVencimento
     public void setVencido() {
-        if (preco.getVencimento() != null && preco.getVencimento().isBefore(LocalDate.now()))
+        if (preco.getVencimento() != null && preco.getVencimento().isBefore(LocalDate.now()) && !this.pago)
         {
             this.vencido = true;
         }
@@ -35,9 +37,10 @@ public class Pagamento {
 //TODO: fazer esta multa ser aumentada dependendo do mês (10% a mais ao mês)
     public void setValorVencido()
     {
-        if(this.vencido && !this.pago && preco != null)
+        if(this.vencido && preco != null)
         {
             preco.setValor(preco.getValor()*1.1);
+            System.out.println("o preço da sua desobediência é de R$" + df.format(preco.getValor()));
         }
     }
 // * build method que usei, precisamos melhorar
@@ -47,5 +50,10 @@ public class Pagamento {
         setVencido();
     }
 
+    public void func()
+    {
+        setVencido();
+        setValorVencido();
+    }
 
 }
