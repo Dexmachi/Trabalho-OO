@@ -8,7 +8,6 @@ import java.time.LocalDate;
 public class Pagamento {
     private Preco preco;
     private boolean pago = false;
-    private int id;
     private boolean vencido = false;
 
 // get e set do atributo "pago" //
@@ -46,7 +45,6 @@ public class Pagamento {
 // * build method que usei, precisamos melhorar
     public Pagamento(Preco preco, int id) {
         this.preco = preco;
-        this.id = id;
         setVencido();
     }
 
