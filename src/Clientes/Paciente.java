@@ -1,5 +1,6 @@
 package Clientes;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Paciente {
@@ -12,7 +13,7 @@ public class Paciente {
     private boolean isPago;
     private int id;
     // funções //
-    private Pagamento pagamento = new Pagamento(new Staff.Prescricoes.Preco(), 1);
+    private Pagamento pagamento = new Pagamento(new Staff.Prescricoes.Preco(0.0, LocalDate.now(), 1), 1);
     public Paciente(Pagamento pagamento, int id) {
         this.pagamento = pagamento;
         this.id = id;
