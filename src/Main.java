@@ -8,7 +8,7 @@ public class Main {
         Clientes.Pagamento pagamento = new Clientes.Pagamento(new Staff.Prescricoes.Preco(),  1);
         Clientes.Paciente paciente = new Clientes.Paciente(pagamento, 1);
 
-        paciente.setisPago();
+        paciente.setIsPago();
         if(pagamento.getPago())
         {
             System.out.println("pago com sucesso!!!");

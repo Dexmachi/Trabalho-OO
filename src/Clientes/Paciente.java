@@ -18,22 +18,24 @@ public class Paciente {
         this.id = id;
     }
 
-    public void setisPago()
+    public void setIsPago()
     {
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite S se você pagou e N se não: ");
         String sn = sc.nextLine();
-        if(sn.equals("N") || sn.equals("n"))
+        if(sn.equalsIgnoreCase("N"))
         {
             pagamento.setPago(false);
         }
-        else if(sn.equals("S") || sn.equals("s"))
+        else if(sn.equalsIgnoreCase("S"))
         {
             pagamento.setPago(true);
         }
         else
         {
-            setisPago();
+            System.out.println("Entrada inválida, por favor insira uma entrada indicada.");
+            setIsPago();
         }
+        sc.close();
     }
 }
