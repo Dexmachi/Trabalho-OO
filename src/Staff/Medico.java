@@ -9,6 +9,11 @@ public class Medico {
     private String especialidade;
     // funções //
     public Medico(String nome, String cpf, String dataNascimento, String crm, String especialidade) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
+        this.CRM = crm;
+        this.especialidade = especialidade;
     }
 
     public String getNome()
@@ -40,5 +45,20 @@ public class Medico {
     public void setCPF(String c)
     {
         this.cpf = c;
+    }
+
+    public void setDataNascimento(String d)
+    {
+        this.dataNascimento = d;
+    }
+
+    public void setCrm(String cr)
+    {
+        this.CRM = cr;
+    }
+
+    public void setEspecialidade(String e)
+    {
+        this.especialidade = e;
     }
 }
