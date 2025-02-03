@@ -6,12 +6,16 @@ import java.util.Scanner;
 
 public class Paciente extends Pessoa {
     // atributos //
-    private boolean isPago;
+    private Pagamento pagamento;
     // funções //
-    private Pagamento pagamento = new Pagamento(new Staff.Prescricoes.Preco(0.0, LocalDate.now(), 1), 1);
-    public Paciente(String nome, String cpf, String dataNascimento, Pagamento pagamento, int id) {
+    public Paciente(String nome, String cpf, String dataNascimento, Pagamento pagamento) {
         super(nome, cpf, dataNascimento);
         this.pagamento = pagamento;
+    }
+
+    public String getCPF()
+    {
+        return super.getCPF();
     }
 
     public void setIsPago()
@@ -34,4 +38,6 @@ public class Paciente extends Pessoa {
         }
         sc.close();
     }
+
+
 }
