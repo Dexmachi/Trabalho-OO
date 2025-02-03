@@ -19,7 +19,7 @@ public class Menu {
             String question;
             if (opcao3.equals("1"))
             {
-                String opcao = JOptionPane.showInputDialog("O que deseja editar:\n1-Médico\n2-Paciente\n3-consulta\n4-Prescrição");
+                String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Editar médicos\n2 - Editar Paciente\n3 - Editar consulta\n4 - Editar Prescrição\n" + "5 - Ver Histórico de consultas");
                 switch (opcao) {
                     case "1":
                         //sistema crud do médico
@@ -76,6 +76,11 @@ public class Menu {
                         opcao2 = JOptionPane.showInputDialog("Escolha uma das opções abaixo:\n1-Exame\n2-Medicamento\n3-Tratamento");
                         break;
                 }
+            }
+
+            if(opcao3.equals("2"))
+            {
+                String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Marcar consulta\n2 - ver boletos\n3 - ver histórico de consultas\n4 - Pagar boleto\n5 - ver prescrições");
             }
         }
 }
