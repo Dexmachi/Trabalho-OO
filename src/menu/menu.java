@@ -3,7 +3,8 @@ package Menu;
 import Staff.Medico;
 import Clientes.Paciente;
 import Cadastros.CadastroMed;
-import Cadastros.cadPac;
+import Cadastros.CadPac;
+import Staff.Prescricoes.Consulta;
 
 import javax.swing.JOptionPane;
 
@@ -11,15 +12,29 @@ public class Menu {
     Medico m = null;
     Paciente p = null;
     CadastroMed cadastroM = new CadastroMed();
-    cadPac cadastroP = new cadPac();
-        public void iniciarMenu() {
-
-            String opcao2;
+    CadPac cadastroP = new CadPac();
+    Consulta consulta = new Consulta();
+        public void iniciarMenu()
+        {
             String opcao3 = JOptionPane.showInputDialog("Você é\n" + "1 - um médico\n" + "ou\n" + "2 - um paciente");
-            String question;
+
             if (opcao3.equals("1"))
             {
-                String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Editar médicos\n2 - Editar Paciente\n3 - Editar consulta\n4 - Editar Prescrição\n" + "5 - Ver Histórico de consultas");
+                menuStaff();
+            }
+
+            if(opcao3.equals("2"))
+            {
+                menuClientes();
+            }
+        }
+
+        public void menuStaff()
+        {
+            {
+                String question;
+                String opcao2;
+                String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Editar médicos\n2 - Editar Paciente\n3 - Editar consulta\n4 - Editar Prescrição\n" + "5 - Ver Histórico de consultas\n6 - atender uma consulta");
                 switch (opcao) {
                     case "1":
                         //sistema crud do médico
@@ -70,6 +85,11 @@ public class Menu {
                     case "3":
                         //sistema crud de consulta
                         opcao2 = JOptionPane.showInputDialog("Escolha uma das opções abaixo:\n1-criar consulta\n2-ler consulta\n3-atualizar consulta\n4-deletar consulta");
+                        if(opcao2.equals("1"))
+                        {
+                            Consulta c = consulta.criarConsul();
+                            JOptionPane.showMessageDialog(null, c.toString());
+                        }
                         break;
                     case "4":
                         //sistema crud do exame
@@ -77,10 +97,19 @@ public class Menu {
                         break;
                 }
             }
+        }
 
-            if(opcao3.equals("2"))
+        public void menuClientes()
+        {
+            String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Marcar consulta\n2 - ver boletos\n3 - ver histórico de consultas\n4 - Pagar boleto\n5 - ver prescrições");
+            switch (opcao)
             {
-                String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Marcar consulta\n2 - ver boletos\n3 - ver histórico de consultas\n4 - Pagar boleto\n5 - ver prescrições");
+                case "1":
+                    JOptionPane.showMessageDialog(null, "Entraremos em contato em breve para marcar sua consulta!");
+                    break;
+                case "2":
+
             }
         }
 }
+

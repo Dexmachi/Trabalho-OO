@@ -1,18 +1,17 @@
 package Cadastros;
 
 import Clientes.Paciente;
-import Staff.Medico;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class cadPac
+public class CadPac
 {
     private int numPac = 0;
     private List<Paciente> pacs;
 
-    public cadPac()
+    public CadPac()
     {
         numPac = 0;
         pacs = new ArrayList<Paciente>();
