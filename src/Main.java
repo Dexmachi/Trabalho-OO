@@ -12,7 +12,6 @@ public class Main {
     public static void main(String[] args) {
         Preco preco = new Preco(102.0, LocalDate.now(), 1);
         Pagamento pagamento = new Pagamento(preco, 1);
-        Paciente paciente = new Paciente(pagamento, 1);
         Menu menu = new Menu();
         menu.iniciarMenu();
     }

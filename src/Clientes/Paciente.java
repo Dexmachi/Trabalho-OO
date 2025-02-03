@@ -1,22 +1,17 @@
 package Clientes;
+import Pessoas.Pessoa;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Paciente {
+public class Paciente extends Pessoa {
     // atributos //
-
-    /*
-     * linkar este check de pagamento com o get e set Pago de "Clientes.Pagamento"
-     * fazer questão de que seja uma função do objeto "Clientes.Paciente" a troca deste check
-    */
     private boolean isPago;
-    private int id;
     // funções //
     private Pagamento pagamento = new Pagamento(new Staff.Prescricoes.Preco(0.0, LocalDate.now(), 1), 1);
-    public Paciente(Pagamento pagamento, int id) {
+    public Paciente(String nome, String cpf, String dataNascimento, Pagamento pagamento, int id) {
+        super(nome, cpf, dataNascimento);
         this.pagamento = pagamento;
-        this.id = id;
     }
 
     public void setIsPago()
