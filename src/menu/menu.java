@@ -14,13 +14,28 @@ public class Menu {
     CadastroMed cadastroM = new CadastroMed();
     CadPac cadastroP = new CadPac();
     Consulta consulta = new Consulta();
+    public Menu(CadastroMed cadastroM) {
+        this.cadastroM = cadastroM; // Usa a mesma instância de CadastroMed
+    }
+
         public void iniciarMenu()
         {
+
             String opcao3 = JOptionPane.showInputDialog("Você é\n" + "1 - um médico\n" + "ou\n" + "2 - um paciente");
 
             if (opcao3.equals("1"))
             {
-                menuStaff();
+                String opcao4 = JOptionPane.showInputDialog("Insira seu CRM");
+                Medico m = cadastroM.lerMedico(opcao4);
+                if (m != null)
+                {
+                    menuStaff();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"este não é um médico registrado");
+                    iniciarMenu();
+                }
             }
 
             if(opcao3.equals("2"))
@@ -87,8 +102,9 @@ public class Menu {
                         opcao2 = JOptionPane.showInputDialog("Escolha uma das opções abaixo:\n1-criar consulta\n2-ler consulta\n3-atualizar consulta\n4-deletar consulta");
                         if(opcao2.equals("1"))
                         {
-                            Consulta c = consulta.criarConsul();
+                            Consulta c = consulta.criarConsul(cadastroM);
                             JOptionPane.showMessageDialog(null, c.toString());
+                            menuStaff();
                         }
                         break;
                     case "4":

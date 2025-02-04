@@ -18,8 +18,6 @@ public class Consulta {
     private int horario;
     private Preco preco;
     private String especialidade;
-
-    CadastroMed cadastroMed=new CadastroMed();
     CadPac cadPac=new CadPac();
 
 
@@ -37,7 +35,7 @@ public class Consulta {
     public Consulta()
     {}
 
-    public Consulta criarConsul()
+    public Consulta criarConsul(CadastroMed cadM)
     {
         String especialidade = JOptionPane.showInputDialog(null, "Digite a especialidade desejada:");
         String horariostr = JOptionPane.showInputDialog(null, "Digite o horário da consulta:");
@@ -50,15 +48,21 @@ public class Consulta {
 
 
         LocalDate data = LocalDate.parse(datastr, formato);
-        medico = cadastroMed.lerMedico(CRM);
+        medico = cadM.lerMedico(CRM);
         paciente = cadPac.lerPaciente(cpf);
         preco = new Preco(Double.parseDouble(valor), LocalDate.now(), 1);
         especialidade = especialidade;
         int horario = Integer.parseInt(horariostr);
         double duracao = Double.parseDouble(duracaostr);
 
+        if(!medico.estaDisponivel(horario))
+            do
+                {
+                    horariostr = JOptionPane.showInputDialog(null, "O médico não está disponível neste horário, favor inserir outro.");
+                    horario = Integer.parseInt(horariostr);
+                } while (!medico.estaDisponivel(horario));
+        medico.agendarHorario(horario);
         return new Consulta(data, medico, paciente, duracao, horario, preco, especialidade);
     }
-
 
 }

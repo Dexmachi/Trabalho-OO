@@ -15,7 +15,7 @@ public class CadastroMed
     public CadastroMed()
     {
         numMed = 0;
-        meds = new ArrayList<Medico>();
+        this.meds = new ArrayList<Medico>();
     }
 
     public int cadastrarMed(Medico m)
@@ -44,7 +44,7 @@ public class CadastroMed
     {
         for(Medico m : meds)
         {
-            if(m.getCRM().equalsIgnoreCase(CRM))
+            if(m.getCRM().trim().equalsIgnoreCase(CRM.trim()))
             {
                 return m;
             }
