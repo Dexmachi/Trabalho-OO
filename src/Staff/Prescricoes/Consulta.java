@@ -3,6 +3,7 @@ package Staff.Prescricoes;
 import Cadastros.CadPac;
 import Cadastros.CadastroMed;
 import Clientes.Paciente;
+import Clientes.Pagamento;
 import Staff.Medico;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class Consulta {
     private Preco preco;
     private String especialidade;
     CadPac cadPac=new CadPac();
-
+    Pagamento pagamento;
 
     public Consulta(LocalDate data, Medico medico, Paciente paciente, double duracao,
                     int horario, Preco preco, String especialidade) {
@@ -31,6 +32,7 @@ public class Consulta {
         this.preco = preco;
         this.especialidade = especialidade;
     }
+
 
     public Consulta()
     {}
@@ -44,6 +46,8 @@ public class Consulta {
         String CRM = JOptionPane.showInputDialog(null, "Digite o crm do médico:");
         String valor = JOptionPane.showInputDialog(null, "Digite o valor da consulta:");
         String datastr =  JOptionPane.showInputDialog(null, "Digite a data de consulta:");
+
+
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 
@@ -54,7 +58,6 @@ public class Consulta {
         especialidade = especialidade;
         int horario = Integer.parseInt(horariostr);
         double duracao = Double.parseDouble(duracaostr);
-
         if(!medico.estaDisponivel(horario))
             do
                 {
@@ -62,7 +65,16 @@ public class Consulta {
                     horario = Integer.parseInt(horariostr);
                 } while (!medico.estaDisponivel(horario));
         medico.agendarHorario(horario);
+        Pagamento pagamento = new Pagamento(preco, data);
+        paciente.adicionarPagamento(pagamento);
         return new Consulta(data, medico, paciente, duracao, horario, preco, especialidade);
+
+
+    }
+
+    public double getValor()
+    {
+        return this.preco.getValor();
     }
 
 }

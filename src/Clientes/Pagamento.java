@@ -1,23 +1,45 @@
 package Clientes;
 
+import Staff.Medico;
 import Staff.Prescricoes.Preco;
 
+import javax.swing.*;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 public class Pagamento {
     private Preco preco;
     private boolean pago = false;
     private boolean vencido = false;
+    private LocalDate dataCriacao;
     private LocalDate vencimento;
+
+
+
+    public Pagamento(Preco p, LocalDate d)
+    {
+        this.preco = p;
+        this.dataCriacao = d;
+        setThisVencimento(d);
+        this.pago = false;
+        this.vencido = false;
+    }
 
     // get e set do atributo "pago" //
     public boolean getPago()
     {
         return this.pago;
     }
+
+    public LocalDate getDataCriacao()
+    {
+        return this.dataCriacao;
+    }
+
+
 
     public void setPago(boolean pago)
     {
@@ -54,18 +76,22 @@ public class Pagamento {
 
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     //get e set de vencimento
-    public void setThisVencimento()
+    public void setThisVencimento(LocalDate v)
     {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("defina a quantidade de dias (30~90 dias recomendados)");
-        int dias = sc.nextInt();
-        this.vencimento = LocalDate.now().plusDays(dias);
+
+        String dias = JOptionPane.showInputDialog("defina a quantidade de dias para este boleto vencer (30~90 dias recomendados)");
+        int diasInt = Integer.parseInt(dias);
+        this.vencimento = v.plusDays(diasInt);
         String vencimentoFormatado = vencimento.format(formatter);
         System.out.println("Data de vencimento: " + vencimentoFormatado);
     }
     public LocalDate getVencimento()
     {
         return this.vencimento;
+    }
+
+    public boolean isPago() {
+        return pago;
     }
 
     public void func()
