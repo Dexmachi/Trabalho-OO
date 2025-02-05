@@ -14,8 +14,9 @@ public class Menu {
     CadastroMed cadastroM = new CadastroMed();
     CadPac cadastroP = new CadPac();
     Consulta consulta = new Consulta();
-    public Menu(CadastroMed cadastroM) {
+    public Menu(CadastroMed cadastroM, CadPac cadPac) {
         this.cadastroM = cadastroM; // Usa a mesma instância de CadastroMed
+        this.cadastroP = cadPac;
     }
 
         public void iniciarMenu()
@@ -102,7 +103,7 @@ public class Menu {
                         opcao2 = JOptionPane.showInputDialog("Escolha uma das opções abaixo:\n1-criar consulta\n2-ler consulta\n3-atualizar consulta\n4-deletar consulta");
                         if(opcao2.equals("1"))
                         {
-                            Consulta c = consulta.criarConsul(cadastroM);
+                            Consulta c = consulta.criarConsul(cadastroM, cadastroP);
                             JOptionPane.showMessageDialog(null, c.toString());
                             menuStaff();
                         }

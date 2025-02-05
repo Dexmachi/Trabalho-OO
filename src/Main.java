@@ -1,3 +1,4 @@
+import Cadastros.CadPac;
 import Cadastros.CadastroMed;
 import Clientes.Paciente;
 import Clientes.Pagamento;
@@ -6,6 +7,7 @@ import Staff.Prescricoes.Consulta;
 import Staff.Prescricoes.Preco;
 import Menu.Menu;
 
+import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
 
@@ -13,12 +15,22 @@ import java.time.LocalDate;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Preco preco = new Preco(102.0, LocalDate.now(), 1);
-        Pagamento pagamento = new Pagamento(preco, 1);
         CadastroMed cadM = new CadastroMed();
-        Menu menu = new Menu(cadM);
+        CadPac cadPac = new CadPac();
+        Consulta consulta = new Consulta();
+        Menu menu = new Menu(cadM, cadPac);
+        Paciente paciente = new Paciente("teste", "001", "25/02/2025");
+        cadPac.cadastrarPac(paciente);
+
+        for (Paciente p : cadPac.getPacs()) {
+            System.out.println(p.getCPF());
+        }
+
         Medico medico = new Medico("Jorge", "001", "25/02/2025", "001", "consulta");
         cadM.cadastrarMed(medico);
+
+
+
         menu.iniciarMenu();
     }
 }

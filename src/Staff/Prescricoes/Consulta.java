@@ -19,7 +19,6 @@ public class Consulta {
     private int horario;
     private Preco preco;
     private String especialidade;
-    CadPac cadPac=new CadPac();
     Pagamento pagamento;
 
     public Consulta(LocalDate data, Medico medico, Paciente paciente, double duracao,
@@ -34,10 +33,11 @@ public class Consulta {
     }
 
 
+
     public Consulta()
     {}
 
-    public Consulta criarConsul(CadastroMed cadM)
+    public Consulta criarConsul(CadastroMed cadM, CadPac cadPac)
     {
         String especialidade = JOptionPane.showInputDialog(null, "Digite a especialidade desejada:");
         String horariostr = JOptionPane.showInputDialog(null, "Digite o horário da consulta:");
@@ -65,6 +65,7 @@ public class Consulta {
                     horario = Integer.parseInt(horariostr);
                 } while (!medico.estaDisponivel(horario));
         medico.agendarHorario(horario);
+
         Pagamento pagamento = new Pagamento(preco, data);
         paciente.adicionarPagamento(pagamento);
         return new Consulta(data, medico, paciente, duracao, horario, preco, especialidade);

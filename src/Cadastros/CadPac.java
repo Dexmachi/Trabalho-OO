@@ -35,7 +35,7 @@ public class CadPac
         String nome = JOptionPane.showInputDialog(null, "Digite o nome do paciente");
         String cpf = JOptionPane.showInputDialog(null, "Digite o CPF do paciente");
         String dataNascimento = JOptionPane.showInputDialog(null, "Digite a data de nascimento do paciente");
-        Paciente p = new Paciente(nome, cpf, dataNascimento, null);
+        Paciente p = new Paciente(nome, cpf, dataNascimento);
         cadastrarPac(p);
         return p;
     }
@@ -44,13 +44,19 @@ public class CadPac
     {
         for(Paciente p : pacs)
         {
-            if(p.getCPF().equalsIgnoreCase(CPF))
+            if(p.getCPF().trim().equalsIgnoreCase(CPF.trim()))
             {
                 return p;
             }
-                JOptionPane.showMessageDialog(null, p.toString());
         }
+        System.out.println("Paciente com CPF " + CPF + " não encontrado.");
         return null;
+    }
+
+    public List<Paciente> getPacs(){
+        {
+            return this.pacs;
+        }
     }
 
     public void atualizarPaciente(Paciente p)
