@@ -10,9 +10,11 @@ public class CadPac
 {
     private int numPac = 0;
     private List<Paciente> pacs;
+    CadConsul cadConsul;
 
-    public CadPac()
+    public CadPac(CadConsul cadConsul)
     {
+        this.cadConsul = cadConsul;
         numPac = 0;
         pacs = new ArrayList<Paciente>();
     }
@@ -35,7 +37,7 @@ public class CadPac
         String nome = JOptionPane.showInputDialog(null, "Digite o nome do paciente");
         String cpf = JOptionPane.showInputDialog(null, "Digite o CPF do paciente");
         String dataNascimento = JOptionPane.showInputDialog(null, "Digite a data de nascimento do paciente");
-        Paciente p = new Paciente(nome, cpf, dataNascimento);
+        Paciente p = new Paciente(nome, cpf, dataNascimento, cadConsul);
         cadastrarPac(p);
         return p;
     }

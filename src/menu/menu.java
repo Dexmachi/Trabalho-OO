@@ -4,6 +4,7 @@ import Staff.Medico;
 import Clientes.Paciente;
 import Cadastros.CadastroMed;
 import Cadastros.CadPac;
+import Cadastros.CadConsul;
 import Staff.Prescricoes.Consulta;
 
 import javax.swing.JOptionPane;
@@ -11,12 +12,13 @@ import javax.swing.JOptionPane;
 public class Menu {
     Medico m = null;
     Paciente p = null;
-    CadastroMed cadastroM = new CadastroMed();
-    CadPac cadastroP = new CadPac();
-    Consulta consulta = new Consulta();
-    public Menu(CadastroMed cadastroM, CadPac cadPac) {
+    CadastroMed cadastroM;
+    CadPac cadastroP;
+    CadConsul cadConsul;
+    public Menu(CadastroMed cadastroM, CadPac cadPac, CadConsul cadC) {
         this.cadastroM = cadastroM; // Usa a mesma instância de CadastroMed
         this.cadastroP = cadPac;
+        this.cadConsul = cadC;
     }
 
         public void iniciarMenu()
@@ -103,7 +105,7 @@ public class Menu {
                         opcao2 = JOptionPane.showInputDialog("Escolha uma das opções abaixo:\n1-criar consulta\n2-ler consulta\n3-atualizar consulta\n4-deletar consulta");
                         if(opcao2.equals("1"))
                         {
-                            Consulta c = consulta.criarConsul(cadastroM, cadastroP);
+                            Consulta c = cadConsul.criarConsul(cadastroM, cadastroP);
                             JOptionPane.showMessageDialog(null, c.toString());
                             menuStaff();
                         }

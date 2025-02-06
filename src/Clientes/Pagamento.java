@@ -1,14 +1,9 @@
 package Clientes;
 
-import Staff.Medico;
-import Staff.Prescricoes.Preco;
-
 import javax.swing.*;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Scanner;
 
 public class Pagamento {
     private double valor;
@@ -97,7 +92,8 @@ public class Pagamento {
         return this.vencimento;
     }
 
-    public boolean isPago() {
+    public boolean isPago()
+    {
         return pago;
     }
 
