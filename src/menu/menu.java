@@ -29,7 +29,7 @@ public class Menu {
             if (opcao3.equals("1"))
             {
                 String opcao4 = JOptionPane.showInputDialog("Insira seu CRM");
-                Medico m = cadastroM.lerMedico(opcao4);
+                this.m = cadastroM.lerMedico(opcao4);
                 if (m != null)
                 {
                     menuStaff();
@@ -43,7 +43,17 @@ public class Menu {
 
             if(opcao3.equals("2"))
             {
-                menuClientes();
+                String opcao4 = JOptionPane.showInputDialog("Insira seu CPF");
+                this.p = cadastroP.lerPaciente(opcao4);
+                if (p != null)
+                {
+                    menuClientes();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"este não é um paciente registrado");
+                    iniciarMenu();
+                }
             }
         }
 
@@ -52,14 +62,18 @@ public class Menu {
             {
                 String question;
                 String opcao2;
-                String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Editar médicos\n2 - Editar Paciente\n3 - Editar consulta\n4 - Editar Prescrição\n" + "5 - Ver Histórico de consultas\n6 - atender uma consulta");
+                String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Editar médicos\n2 - Editar Paciente\n3 - Editar consulta\n4 - Editar Prescrição\n" + "5 - Ver Histórico de consultas\n6 - atender uma consulta\n0 - voltar");
                 switch (opcao) {
+                    case "0":
+                        iniciarMenu();
+                        break;
                     case "1":
                         //sistema crud do médico
                         opcao2 = JOptionPane.showInputDialog("Escolha uma das opções abaixo:\n1-criar médico\n2-ler médico\n3-atualizar médico\n4-deletar médico");
                         //condições para definir qual a ação escolhida
                         if (opcao2.equals("1")) {
-                            this.m = cadastroM.criarMedico();
+                            cadastroM.criarMedico();
+                            menuStaff();
                         }
                         /*
                         TODO 1 FAZER ISSO DAQUI SER LEGÍVEL PELO CÓDIGO (fazer esse menu ser recursivo)
@@ -120,14 +134,17 @@ public class Menu {
 
         public void menuClientes()
         {
-            String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Marcar consulta\n2 - pagar um boleto\n3 - ver histórico de consultas\n4 - Pagar boleto\n5 - ver prescrições");
+            String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Marcar consulta\n2 - pagar um boleto\n3 - ver histórico de consultas\n4 - Pagar boleto\n5 - ver prescrições\n0 - voltar");
             switch (opcao)
             {
+                case "0":
+                    iniciarMenu();
+                    break;
                 case "1":
                     JOptionPane.showMessageDialog(null, "Entraremos em contato em breve para marcar sua consulta!");
                     break;
                 case "2":
-
+                    p.setIsPago();
 
             }
         }

@@ -25,8 +25,6 @@ public class Main {
         Medico medico = new Medico("Jorge", "001", "25/02/2025", "001", "consulta");
         cadM.cadastrarMed(medico);
 
-
-
         menu.iniciarMenu();
     }
 }
