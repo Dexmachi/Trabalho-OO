@@ -65,14 +65,16 @@ public class Paciente extends Pessoa {
 
 
     public void setIsPago() {
-        String sn = JOptionPane.showInputDialog("favor indique se você pagou ou não este boleto: ");
-        System.out.println("Digite S se você pagou e N se não: ");
+
+        Pagamento pagamento = lerBoletos();
+
+        String sn = JOptionPane.showInputDialog("Digite S se você pagou e N se não: ");
         if (sn.equalsIgnoreCase("N")) {
             pagamento.setPago(false);
         } else if (sn.equalsIgnoreCase("S")) {
             pagamento.setPago(true);
         } else {
-            System.out.println("Entrada inválida, por favor insira uma entrada indicada.");
+            JOptionPane.showInputDialog("Entrada inválida, por favor insira uma entrada indicada.");
             setIsPago();
         }
     }
@@ -85,7 +87,7 @@ public class Paciente extends Pessoa {
         return true;
     }
 
-    public void agendarHorario(String horario) {
+    public void agendarConsul(String horario) {
         if (estaDisponivel(horario)) {
             LocalDate d = LocalDate.parse(horario, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             Consulta con = cadConsul.lerConsul(d, getCPF());

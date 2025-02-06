@@ -120,13 +120,14 @@ public class Menu {
 
         public void menuClientes()
         {
-            String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Marcar consulta\n2 - ver boletos\n3 - ver histórico de consultas\n4 - Pagar boleto\n5 - ver prescrições");
+            String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Marcar consulta\n2 - pagar um boleto\n3 - ver histórico de consultas\n4 - Pagar boleto\n5 - ver prescrições");
             switch (opcao)
             {
                 case "1":
                     JOptionPane.showMessageDialog(null, "Entraremos em contato em breve para marcar sua consulta!");
                     break;
                 case "2":
+
 
             }
         }

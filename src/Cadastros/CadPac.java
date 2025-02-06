@@ -42,6 +42,7 @@ public class CadPac
         return p;
     }
 
+
     public Paciente lerPaciente (String CPF)
     {
         for(Paciente p : pacs)

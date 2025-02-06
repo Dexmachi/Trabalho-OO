@@ -69,10 +69,10 @@ public class CadConsul
             horariostr = JOptionPane.showInputDialog("O médico não está disponível neste horário. Favor inserir outro horário:");
             horario = validarHoraMed(horariostr);
         }
+
         medico.agendarHorario(horario);
 
-
-        paciente.agendarHorario(datastr);
+        paciente.agendarConsul(datastr);
 
         Consulta c = new Consulta(data, medico, paciente, duracao, horario, preco, especialidade);
         cadastrarConsul(c);
@@ -98,7 +98,7 @@ public class CadConsul
                 return null;
             }
         }
-        System.out.println("Sem consultas encontradas no dia " + data + " e com um paciente de CPF " + cpf + ".");
+        JOptionPane.showMessageDialog(null, "Sem consultas encontradas no dia " + data + " e com um paciente de CPF " + cpf + ".");
         return null;
     }
 
