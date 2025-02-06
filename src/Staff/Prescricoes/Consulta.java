@@ -33,6 +33,11 @@ public class Consulta {
         return this.pagamento.getValor();
     }
 
+    public String getCPFPaciente()
+    {
+        return this.paciente.getCPF();
+    }
+
     public Paciente getPaciente() {
         return this.paciente;
     }
@@ -46,11 +51,56 @@ public class Consulta {
         return this.horario;
     }
 
-    public boolean isAtendida() {
-        return this.isAtendida;
+    public void isAtendida() {
+        this.isAtendida = true;
     }
 
     public String getEspecialidade() {
         return this.especialidade;
+    }
+
+    public void setEspecialidade(String e)
+    {
+        this.especialidade = e;
+    }
+
+    public void setHorario(int novoHorario)
+    {
+        this.horario = novoHorario;
+    }
+
+    public void setDuracao(double novaDuracao)
+    {
+        this.duracao = novaDuracao;
+    }
+
+    public void setPaciente(Paciente paciente)
+    {
+        this.paciente = paciente;
+    }
+
+    public void setMedico(Medico novoMedico)
+    {
+        this.medico = novoMedico;
+    }
+
+    public void setPreco(double novoPreco)
+    {
+        this.preco = novoPreco;
+    }
+
+    public void setData(LocalDate novaData)
+    {
+        this.data = novaData;
+    }
+
+    public Object getCRMMed()
+    {
+        return this.medico.getCRM();
+    }
+
+    public Medico getMed()
+    {
+        return this.medico;
     }
 }

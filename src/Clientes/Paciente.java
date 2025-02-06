@@ -82,17 +82,16 @@ public class Paciente extends Pessoa {
         }
     }
 
-    public boolean estaDisponivel(String horario) {
-        LocalDate d = LocalDate.parse(horario, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        if (cadConsul.lerConsul(d, getCPF()) == null) {
+    public boolean estaDisponivel(LocalDate horario) {
+        if (cadConsul.lerConsul(horario, getCPF()) == null) {
             return false;
         }
         return true;
     }
 
     public void agendarConsul(String horario) {
-        if (estaDisponivel(horario)) {
-            LocalDate d = LocalDate.parse(horario, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDate d = LocalDate.parse(horario, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        if (estaDisponivel(d)) {
             Consulta con = cadConsul.lerConsul(d, getCPF());
             if (con != null) {
                 consultas.add(con);

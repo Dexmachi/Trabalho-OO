@@ -13,30 +13,25 @@ import java.util.List;
 
 
 
-public class CadConsul
-{
+public class CadConsul {
     CadPac cadPac;
     private int numConsul = 0;
     private List<Consulta> consuls;
 
-    public CadConsul()
-    {
+    public CadConsul() {
         numConsul = 0;
         consuls = new ArrayList<Consulta>();
     }
 
-    public int cadastrarConsul(Consulta c)
-    {
+    public int cadastrarConsul(Consulta c) {
         boolean cadastrou = consuls.add(c);
-        if(cadastrou)
-        {
-            numConsul=consuls.size();
+        if (cadastrou) {
+            numConsul = consuls.size();
         }
         return numConsul;
     }
 
-    public CadConsul criarConsul(CadastroMed cadM, CadPac cadPac)
-    {
+    public Consulta criarConsul(CadastroMed cadM, CadPac cadPac) {
         Medico medico;
         Paciente paciente;
 
@@ -46,7 +41,7 @@ public class CadConsul
         String cpf = JOptionPane.showInputDialog(null, "Digite a o cpf do paciente:");
         String CRM = JOptionPane.showInputDialog(null, "Digite o crm do médico:");
         String valor = JOptionPane.showInputDialog(null, "Digite o valor da consulta:");
-        String datastr =  JOptionPane.showInputDialog(null, "Digite a data de consulta:");
+        String datastr = JOptionPane.showInputDialog(null, "Digite a data de consulta:");
 
 
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -59,7 +54,6 @@ public class CadConsul
         paciente = validarPaciente(cpf, cadPac);
 
 
-
         double preco = Double.parseDouble(valor);
         int horario = Integer.parseInt(horariostr);
         double duracao = Double.parseDouble(duracaostr);
@@ -69,21 +63,21 @@ public class CadConsul
             horariostr = JOptionPane.showInputDialog("O médico não está disponível neste horário. Favor inserir outro horário:");
             horario = validarInteiroMed(horariostr);
         }
+
         medico.agendarHorario(horario);
 
+        paciente.agendarConsul(datastr);
 
-        paciente.agendarHorario(datastr);
-
-        CadConsul c = new Consulta(data, medico, paciente, duracao, horario, preco, especialidade);
+        Consulta c = new Consulta(data, medico, paciente, duracao, horario, preco, especialidade);
         cadastrarConsul(c);
         Pagamento pagamento = new Pagamento(preco, data);
         paciente.adicionarPagamento(pagamento);
         return c;
     }
 
-    public CadConsul lerConsul (LocalDate data, String cpf)
+    public Consulta lerConsul (LocalDate data, String cpf)
     {
-        for(CadConsul c : consuls)
+        for(Consulta c : consuls)
         {
             if(c.getData().equals(data))
             {
@@ -93,18 +87,24 @@ public class CadConsul
                     return c;
                 }
             }
+            else
+            {
+                return null;
+            }
         }
-        System.out.println("Sem consultas encontradas no dia " + data + " e com um paciente de CPF " + cpf + ".");
+        JOptionPane.showMessageDialog(null, "Sem consultas encontradas no dia " + data + " e com um paciente de CPF " + cpf + ".");
         return null;
     }
+
     //método para atualizar alguma informação de consulta
-    public CadConsul atualizarConsul(CadConsul c)
+    public Consulta atualizarConsul(CadPac cadPac, CadastroMed cadMed)
     {
+        Consulta c = lerConsulCMed();
         String r = JOptionPane.showInputDialog(null, "Qual informação deseja atualizar:\n1-especialidade\n2-horário\n3-duração\n4-paciente\n5-médico\n6-valor\n7-data");
         switch (r)
         {
             case "1":
-                String e = JOptionPane.showInputDiaog("Escreva a nova especialidade:");
+                String e = JOptionPane.showInputDialog("Escreva a nova especialidade:");
                 c.setEspecialidade(e);
                 break;
             case "2":
@@ -113,20 +113,20 @@ public class CadConsul
                 c.setHorario(novoHorario);
                 break;
             case "3":
-                String d = JOPtionPane.showInputDialog("Escreva a nova duração:");
+                String d = JOptionPane.showInputDialog("Escreva a nova duração:");
                 double novaDuracao = Double.parseDouble(d);
                 c.setDuracao(novaDuracao);
                 break;
             case "4":
                 String cpf = JOptionPane.showInputDialog("Escreva o CPF do novo paciente:");
                 //método que possui o mesmo nome de outro método, porém possui apenas um parâmetro
-                Paciente paciente = validarPaciente(cpf);
+                Paciente paciente = cadPac.lerPaciente(cpf);
                 c.setPaciente(paciente);
                 break;
             case "5":
                 String crm = JOptionPane.showInputDialog("Escreva o CRM do novo médico:");
                 //método para achar um médico a partir de sua crm
-                Medico novoMedico = lerMedico(crm);
+                Medico novoMedico = cadMed.lerMedico(crm);
                 c.setMedico(novoMedico);
                 break;
             case "6":
@@ -135,26 +135,57 @@ public class CadConsul
                 c.setPreco(novoPreco);
                 break;
             case "7":
-                String d = JOptionPane.showInputDialog("Escreva a nova data:");
+                String dat = JOptionPane.showInputDialog("Escreva a nova data:");
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate novaData = LocalDate.parse(d, formato);
+                LocalDate novaData = LocalDate.parse(dat, formato);
                 c.setData(novaData);
                 break;
         }
+        return c;
     }
 
-    public boolean deletarConsul(CadConsul c)
+    public boolean cancelarConsul(Consulta c)
     {
         boolean remove = false;
-        CadConsul remover = lerConsul(c.getData(), c.getCPF());
-        if(remover != null)
+        Consulta remover = lerConsulCMed();
+        if(remover != null && consuls != null)
         {
             remove = consuls.remove(remover);
         }
         return remove;
     }
 
-    public int validarInteiroMed(String valor) {
+    public Consulta lerConsulCMed()
+    {
+        String datastr = JOptionPane.showInputDialog("insira a data da consulta:");
+        LocalDate data = LocalDate.parse(datastr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        String cpf = JOptionPane.showInputDialog("insira o cpf do paciente:");
+        String nome = JOptionPane.showInputDialog("insira o nome do medico:");
+        for(Consulta c : consuls) {
+            System.out.println(c.getData());
+            System.out.println(c.getMed().getNome());
+            System.out.println(c.getPaciente().getCPF());
+            if (c.getData().equals(data))
+            {
+                Paciente p = c.getPaciente();
+                if (p.getCPF().equalsIgnoreCase(cpf)) {
+                    Medico m = c.getMed();
+                    if (m.getNome().equalsIgnoreCase(nome)) {
+                        {
+                            return c;
+                        }
+                    }
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Sem consultas encontradas com os dados indicados");
+            return null;
+        }
+        JOptionPane.showMessageDialog(null, "Sem consultas encontradas com os dados indicados");
+        return null;
+    }
+
+    public int validarInteiroMed(String valor)
+    {
         try {
             return Integer.parseInt(valor);
         } catch (NumberFormatException e) {
@@ -176,10 +207,8 @@ public class CadConsul
         return null;
     }
 
-
-    public List<Consulta> getConsuls(){
-        {
+    public List<Consulta> getConsuls()
+    {
             return this.consuls;
-        }
     }
 }

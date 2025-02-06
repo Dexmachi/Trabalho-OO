@@ -148,6 +148,15 @@ public class Menu {
                             JOptionPane.showMessageDialog(null, c.toString());
                             menuStaff();
                         }
+                        else if(opcao2.equals("2"))
+                        {
+                            Consulta c = cadConsul.lerConsulCMed();
+                            if(c != null)
+                            {
+                                JOptionPane.showMessageDialog(null, "Consulta dia: " + c.getData() + " Hora: " + c.getHorario() + " Com o paciente: " + c.getPaciente().getNome() + " e médico: " + c.getMed().getNome());
+                            }
+                            menuStaff();
+                        }
                         break;
                     case "4":
                         //sistema crud do exame
