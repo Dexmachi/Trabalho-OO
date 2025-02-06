@@ -67,7 +67,7 @@ public class CadConsul
         //garantir que o médico está disponível e agenda na agenda do médico
         while (!medico.estaDisponivel(horario)) {
             horariostr = JOptionPane.showInputDialog("O médico não está disponível neste horário. Favor inserir outro horário:");
-            horario = validarInteiroMed(horariostr);
+            horario = validarHoraMed(horariostr);
         }
         medico.agendarHorario(horario);
 
@@ -93,16 +93,22 @@ public class CadConsul
                     return c;
                 }
             }
+            else
+            {
+                return null;
+            }
         }
         System.out.println("Sem consultas encontradas no dia " + data + " e com um paciente de CPF " + cpf + ".");
         return null;
     }
 
-    public int validarInteiroMed(String valor) {
+    public int validarHoraMed(String hora)
+    {
         try {
-            return Integer.parseInt(valor);
-        } catch (NumberFormatException e) {
-            return validarInteiroMed(JOptionPane.showInputDialog("O médico não está disponível neste horário. Favor inserir outro horário:"));
+            return Integer.parseInt(hora);
+        } catch (NumberFormatException e)
+        {
+            return validarHoraMed(JOptionPane.showInputDialog("O médico não está disponível neste horário. Favor inserir outro horário:"));
         }
     }
 
@@ -117,6 +123,7 @@ public class CadConsul
             }
             return pac;
         }
+
         return null;
     }
 
