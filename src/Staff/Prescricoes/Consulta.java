@@ -17,12 +17,12 @@ public class Consulta {
     private double duracao;
     private boolean isAtendida=false;
     private int horario;
-    private Preco preco;
+    private double preco;
     private String especialidade;
     Pagamento pagamento;
 
     public Consulta(LocalDate data, Medico medico, Paciente paciente, double duracao,
-                    int horario, Preco preco, String especialidade) {
+                    int horario, double preco, String especialidade) {
         this.data = data;
         this.medico = medico;
         this.paciente = paciente;
@@ -54,7 +54,7 @@ public class Consulta {
         LocalDate data = LocalDate.parse(datastr, formato);
         medico = cadM.lerMedico(CRM);
         paciente = cadPac.lerPaciente(cpf);
-        preco = new Preco(Double.parseDouble(valor), LocalDate.now(), 1);
+        preco = Double.parseDouble(valor);
         especialidade = especialidade;
         int horario = Integer.parseInt(horariostr);
         double duracao = Double.parseDouble(duracaostr);
@@ -75,7 +75,7 @@ public class Consulta {
 
     public double getValor()
     {
-        return this.preco.getValor();
+        return this.pagamento.getValor();
     }
 
 }

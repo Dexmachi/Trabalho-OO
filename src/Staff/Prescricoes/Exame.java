@@ -7,5 +7,4 @@ public class Exame {
     private Date dataPres;
     private Date dataReali;
     private String result;
-    private Preco preco;
 }

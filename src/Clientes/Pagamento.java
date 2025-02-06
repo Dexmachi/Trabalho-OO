@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Pagamento {
-    private Preco preco;
+    private double valor;
     private boolean pago = false;
     private boolean vencido = false;
     private LocalDate dataCriacao;
@@ -19,9 +19,9 @@ public class Pagamento {
 
 
 
-    public Pagamento(Preco p, LocalDate d)
+    public Pagamento(double p, LocalDate d)
     {
-        this.preco = p;
+        this.valor = p;
         this.dataCriacao = d;
         setThisVencimento(d);
         this.pago = false;
@@ -39,7 +39,14 @@ public class Pagamento {
         return this.dataCriacao;
     }
 
+    public double getValor() {
+        return valor;
+    }
 
+    public void setValor(double valor)
+        {
+            this.valor = valor;
+        }
 
     public void setPago(boolean pago)
     {
@@ -61,16 +68,16 @@ public class Pagamento {
 //TODO: fazer esta multa ser aumentada dependendo do mês (10% a mais ao mês)
     public void setValorVencido()
     {
-        if(this.vencido && preco != null)
+        if(this.vencido && valor != 0.0)
         {
-            preco.setValor(preco.getValor()*1.1);
-            System.out.println("o preço da sua desobediência é de R$" + df.format(preco.getValor()));
+            setValor(getValor()*1.1);
+            System.out.println("o preço da sua desobediência é de R$" + df.format(getValor()));
         }
     }
 // * build method que usei, precisamos melhorar
-    public Pagamento(Preco preco, int id)
+    public Pagamento(double preco, int id)
     {
-        this.preco = preco;
+        this.valor = preco;
         setVencido();
     }
 
