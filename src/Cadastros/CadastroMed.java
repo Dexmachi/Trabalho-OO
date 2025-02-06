@@ -36,8 +36,19 @@ public class CadastroMed
         String crm = JOptionPane.showInputDialog(null, "Digite o CRM do médico");
         String especialidade = JOptionPane.showInputDialog(null, "Digite a especialidade do médico");
         Medico m = new Medico(nome, cpf, dataNascimento, crm, especialidade);
-        cadastrarMed(m);
-        return m;
+
+        Medico j = lerMedico(crm);
+
+        if (j == null)
+        {
+            cadastrarMed(m);
+            return m;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "CRM já cadastrado.");
+            return null;
+        }
     }
 
     public Medico lerMedico (String CRM)

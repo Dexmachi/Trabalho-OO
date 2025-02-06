@@ -58,6 +58,7 @@ public class Paciente extends Pessoa {
             }
         } catch (DateTimeParseException e) {
             JOptionPane.showMessageDialog(null, "Data inválida. Por favor, use o formato dd/mm/yyyy digitando as /.");
+            lerBoletos();
         }
 
         return null;
@@ -71,8 +72,10 @@ public class Paciente extends Pessoa {
         String sn = JOptionPane.showInputDialog("Digite S se você pagou e N se não: ");
         if (sn.equalsIgnoreCase("N")) {
             pagamento.setPago(false);
+            JOptionPane.showInputDialog(null, "Não pago com sucesso!");
         } else if (sn.equalsIgnoreCase("S")) {
             pagamento.setPago(true);
+            JOptionPane.showInputDialog(null, "Pago com sucesso!");
         } else {
             JOptionPane.showInputDialog("Entrada inválida, por favor insira uma entrada indicada.");
             setIsPago();

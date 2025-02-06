@@ -82,35 +82,60 @@ public class Menu {
                         TODO 4 FAZER O SISTEMA FAZER O MÉDICO E O PACIENTE SEREM HERDEIROS DO OBJETO PESSOA
                         TODO 5 FAZER O SISTEMA TER UMA FORMA DE ENCONTRAR O OBJETO QUE QUEREMOS
                          */
-                        else if (opcao2.equals("2") && m != null) {
+                        else if (opcao2.equals("2")) {
                             question = JOptionPane.showInputDialog("Informe o CRM do médico:");
                             Medico med = cadastroM.lerMedico(question);
                             if (med != null) {
-                                JOptionPane.showMessageDialog(null, med.toString());
+                                JOptionPane.showMessageDialog(null, "CRM: "+med.getCRM()+" Nome: "+med.getNome());
                             }
-                        } else if (opcao2.equals("3") && m != null) {
-                            cadastroM.atualizarMedico(m);
-                        } else if (opcao2.equals("4") && m != null) {
-                            cadastroM.deletarMed(m);
+                            menuStaff();
+                        } else if (opcao2.equals("3")) {
+                            question = JOptionPane.showInputDialog("Informe o CRM do médico:");
+                            Medico med = cadastroM.lerMedico(question);
+                            if (med != null) {
+                                cadastroM.atualizarMedico(med);
+                            }
+                            menuStaff();
+                        } else if (opcao2.equals("4")) {
+                            question = JOptionPane.showInputDialog("Informe o CRM do médico:");
+                            Medico med = cadastroM.lerMedico(question);
+                            if (med != null) {
+                                cadastroM.deletarMed(med);
+                            }
+                            menuStaff();
                         }
                         break;
                     case "2":
                         //sistema crud do paciente
                         opcao2 = JOptionPane.showInputDialog("Escolha uma das opções abaixo:\n1-criar paciente\n2-ler paciente\n3-atualizar paciente\n4-deletar paciente");
                         if (opcao2.equals("1")) {
-                            this.p = cadastroP.criarPaciente();
-                        } else if (opcao2.equals("2") && p != null) {
+                            p = cadastroP.criarPaciente();
+                            menuStaff();
+                        } else if (opcao2.equals("2")) {
                             question = JOptionPane.showInputDialog("Informe o CPF do paciente:");
-                            Paciente pac = cadastroP.lerPaciente(question);
-                            if (pac != null) {
-                                JOptionPane.showMessageDialog(null, p.toString());
+                            this.p = cadastroP.lerPaciente(question);
+                            if (p != null) {
+                                JOptionPane.showMessageDialog(null, "paciente de cpf: " + p.getCPF() + " e nome: " + p.getNome());
                             }
-                        } else if (opcao2.equals("3") && p != null) {
-                            cadastroP.atualizarPaciente(p);
-                        } else if (opcao2.equals("4") && p != null) {
-                            boolean bool = cadastroP.deletarPac(p);
+                            menuStaff();
+                        } else if (opcao2.equals("3")) {
+                            question = JOptionPane.showInputDialog("Informe o CPF do paciente:");
+                            this.p = cadastroP.lerPaciente(question);
+                            if (p != null)
+                            {
+                                cadastroP.atualizarPaciente(p);
+                            }
+                            menuStaff();
+                        } else if (opcao2.equals("4")) {
+                            question = JOptionPane.showInputDialog("Informe o CPF do paciente:");
+                            this.p = cadastroP.lerPaciente(question);
+                            if (p != null)
+                            {
+                                boolean bool = cadastroP.deletarPac(p);
                             if (bool) {
                                 JOptionPane.showMessageDialog(null, "deletado com sucesso");
+                            }
+                                menuStaff();
                             }
                         }
                         break;
@@ -134,7 +159,7 @@ public class Menu {
 
         public void menuClientes()
         {
-            String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Marcar consulta\n2 - pagar um boleto\n3 - ver histórico de consultas\n4 - Pagar boleto\n5 - ver prescrições\n0 - voltar");
+            String opcao = JOptionPane.showInputDialog("O que deseja fazer:\n1 - Marcar consulta\n2 - ver boletos\n3 - ver histórico de consultas\n4 - Pagar boleto\n5 - ver prescrições\n0 - voltar");
             switch (opcao)
             {
                 case "0":
@@ -142,10 +167,12 @@ public class Menu {
                     break;
                 case "1":
                     JOptionPane.showMessageDialog(null, "Entraremos em contato em breve para marcar sua consulta!");
+                    menuClientes();
                     break;
-                case "2":
+                case "4":
                     p.setIsPago();
-
+                    menuClientes();
+                    break;
             }
         }
 }

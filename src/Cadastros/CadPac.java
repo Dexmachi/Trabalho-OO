@@ -37,9 +37,20 @@ public class CadPac
         String nome = JOptionPane.showInputDialog(null, "Digite o nome do paciente");
         String cpf = JOptionPane.showInputDialog(null, "Digite o CPF do paciente");
         String dataNascimento = JOptionPane.showInputDialog(null, "Digite a data de nascimento do paciente");
+
+        Paciente j = lerPaciente(cpf);
+
+        if (j == null)
+        {
         Paciente p = new Paciente(nome, cpf, dataNascimento, cadConsul);
-        cadastrarPac(p);
-        return p;
+            cadastrarPac(p);
+            return p;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "CPF já cadastrado");
+            return null;
+        }
     }
 
 
