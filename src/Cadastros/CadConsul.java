@@ -35,7 +35,7 @@ public class CadConsul
         return numConsul;
     }
 
-    public Consulta criarConsul(CadastroMed cadM, CadPac cadPac)
+    public CadConsul criarConsul(CadastroMed cadM, CadPac cadPac)
     {
         Medico medico;
         Paciente paciente;
@@ -67,23 +67,23 @@ public class CadConsul
         //garantir que o médico está disponível e agenda na agenda do médico
         while (!medico.estaDisponivel(horario)) {
             horariostr = JOptionPane.showInputDialog("O médico não está disponível neste horário. Favor inserir outro horário:");
-            horario = validarHoraMed(horariostr);
+            horario = validarInteiroMed(horariostr);
         }
-
         medico.agendarHorario(horario);
 
-        paciente.agendarConsul(datastr);
 
-        Consulta c = new Consulta(data, medico, paciente, duracao, horario, preco, especialidade);
+        paciente.agendarHorario(datastr);
+
+        CadConsul c = new Consulta(data, medico, paciente, duracao, horario, preco, especialidade);
         cadastrarConsul(c);
         Pagamento pagamento = new Pagamento(preco, data);
         paciente.adicionarPagamento(pagamento);
         return c;
     }
 
-    public Consulta lerConsul (LocalDate data, String cpf)
+    public CadConsul lerConsul (LocalDate data, String cpf)
     {
-        for(Consulta c : consuls)
+        for(CadConsul c : consuls)
         {
             if(c.getData().equals(data))
             {
@@ -93,22 +93,72 @@ public class CadConsul
                     return c;
                 }
             }
-            else
-            {
-                return null;
-            }
         }
-        JOptionPane.showMessageDialog(null, "Sem consultas encontradas no dia " + data + " e com um paciente de CPF " + cpf + ".");
+        System.out.println("Sem consultas encontradas no dia " + data + " e com um paciente de CPF " + cpf + ".");
         return null;
     }
-
-    public int validarHoraMed(String hora)
+    //método para atualizar alguma informação de consulta
+    public CadConsul atualizarConsul(CadConsul c)
     {
-        try {
-            return Integer.parseInt(hora);
-        } catch (NumberFormatException e)
+        String r = JOptionPane.showInputDialog(null, "Qual informação deseja atualizar:\n1-especialidade\n2-horário\n3-duração\n4-paciente\n5-médico\n6-valor\n7-data");
+        switch (r)
         {
-            return validarHoraMed(JOptionPane.showInputDialog("O médico não está disponível neste horário. Favor inserir outro horário:"));
+            case "1":
+                String e = JOptionPane.showInputDiaog("Escreva a nova especialidade:");
+                c.setEspecialidade(e);
+                break;
+            case "2":
+                String h = JOptionPane.showInputDialog("Escreva o novo horário:");
+                int novoHorario = Integer.parseInt(h);
+                c.setHorario(novoHorario);
+                break;
+            case "3":
+                String d = JOPtionPane.showInputDialog("Escreva a nova duração:");
+                double novaDuracao = Double.parseDouble(d);
+                c.setDuracao(novaDuracao);
+                break;
+            case "4":
+                String cpf = JOptionPane.showInputDialog("Escreva o CPF do novo paciente:");
+                //método que possui o mesmo nome de outro método, porém possui apenas um parâmetro
+                Paciente paciente = validarPaciente(cpf);
+                c.setPaciente(paciente);
+                break;
+            case "5":
+                String crm = JOptionPane.showInputDialog("Escreva o CRM do novo médico:");
+                //método para achar um médico a partir de sua crm
+                Medico novoMedico = lerMedico(crm);
+                c.setMedico(novoMedico);
+                break;
+            case "6":
+                String v = JOptionPane.showInputDialog("Escreva o novo valor:");
+                double novoPreco = Double.parseDouble(v);
+                c.setPreco(novoPreco);
+                break;
+            case "7":
+                String d = JOptionPane.showInputDialog("Escreva a nova data:");
+                DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate novaData = LocalDate.parse(d, formato);
+                c.setData(novaData);
+                break;
+        }
+    }
+
+    public boolean deletarConsul(CadConsul c)
+    {
+        boolean remove = false;
+        CadConsul remover = lerConsul(c.getData(), c.getCPF());
+        if(remover != null)
+        {
+            remove = consuls.remove(remover);
+        }
+        return remove;
+    }
+
+    public int validarInteiroMed(String valor) {
+        try {
+            return Integer.parseInt(valor);
+        } catch (NumberFormatException e) {
+            return validarInteiroMed(JOptionPane.showInputDialog("O médico não está disponível neste horário. Favor inserir outro horário:"));
         }
     }
 
@@ -123,7 +173,6 @@ public class CadConsul
             }
             return pac;
         }
-
         return null;
     }
 
