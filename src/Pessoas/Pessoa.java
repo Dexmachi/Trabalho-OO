@@ -1,9 +1,5 @@
 package Pessoas;
 
-import Clientes.Paciente;
-
-import javax.swing.*;
-
 public abstract class Pessoa {
     private String nome;
     private String cpf;
@@ -15,26 +11,11 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-
-
-
-
-
-
-
-
-
-
-
     public String getNome()
     {
         return this.nome;
     }
 
-    public String getDataNascimento()
-    {
-        return this.dataNascimento;
-    }
 
     public String getCPF()
     {

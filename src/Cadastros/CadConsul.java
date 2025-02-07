@@ -14,21 +14,16 @@ import java.util.List;
 
 
 public class CadConsul {
-    CadPac cadPac;
-    private int numConsul = 0;
     private List<Consulta> consuls;
 
     public CadConsul() {
-        numConsul = 0;
-        consuls = new ArrayList<Consulta>();
+        int numConsul = 0;
+        consuls = new ArrayList<>();
     }
 
-    public int cadastrarConsul(Consulta c) {
-        boolean cadastrou = consuls.add(c);
-        if (cadastrou) {
-            numConsul = consuls.size();
-        }
-        return numConsul;
+    public void cadastrarConsul(Consulta c) {
+        consuls.add(c);
+        int numConsul = consuls.size();
     }
 
     public Consulta criarConsul(CadastroMed cadM, CadPac cadPac) {
@@ -68,7 +63,7 @@ public class CadConsul {
 
         paciente.agendarConsul(datastr);
 
-        Consulta c = new Consulta(data, medico, paciente, duracao, horario, preco, especialidade);
+        Consulta c = new Consulta(data, medico, paciente, duracao, horario, especialidade);
         cadastrarConsul(c);
         Pagamento pagamento = new Pagamento(preco, data);
         paciente.adicionarPagamento(pagamento);
@@ -97,7 +92,7 @@ public class CadConsul {
     }
 
     //método para atualizar alguma informação de consulta
-    public Consulta atualizarConsul(CadPac cadPac, CadastroMed cadMed)
+    public void atualizarConsul(CadPac cadPac, CadastroMed cadMed)
     {
         Consulta c = lerConsulCMed();
         String r = JOptionPane.showInputDialog(null, "Qual informação deseja atualizar:\n1-especialidade\n2-horário\n3-duração\n4-paciente\n5-médico\n6-valor\n7-data");
@@ -141,10 +136,9 @@ public class CadConsul {
                 c.setData(novaData);
                 break;
         }
-        return c;
     }
 
-    public boolean cancelarConsul(Consulta c)
+    public boolean cancelarConsul()
     {
         boolean remove = false;
         Consulta remover = lerConsulCMed();
@@ -200,15 +194,15 @@ public class CadConsul {
             if(!cpf.equalsIgnoreCase(pac.getCPF()))
             {
                 cpf = JOptionPane.showInputDialog("Paciente inexistente ou não cadastrado, favor inserir outro cpf: ");
-                validarPaciente(cpf, cadPac);;
+                validarPaciente(cpf, cadPac);
             }
             return pac;
         }
         return null;
     }
 
-    public List<Consulta> getConsuls()
+    /*public List<Consulta> getConsuls()
     {
             return this.consuls;
-    }
+    }*/
 }

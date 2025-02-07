@@ -8,27 +8,22 @@ import java.util.List;
 
 public class CadastroMed
 {
-    private String question;
-    private int numMed = 0;
+    private int numMed;
     private List<Medico> meds;
 
     public CadastroMed()
     {
         numMed = 0;
-        this.meds = new ArrayList<Medico>();
+        this.meds = new ArrayList<>();
     }
 
-    public int cadastrarMed(Medico m)
+    public void cadastrarMed(Medico m)
     {
-        boolean cadastrou = meds.add(m);
-        if(cadastrou)
-        {
-            numMed=meds.size();
-        }
-        return numMed;
+        meds.add(m);
+        numMed=meds.size();
     }
 
-    public Medico criarMedico ()
+    public void criarMed()
     {
         String nome = JOptionPane.showInputDialog(null, "Digite o nome do médico");
         String cpf = JOptionPane.showInputDialog(null, "Digite o CPF do médico");
@@ -42,12 +37,10 @@ public class CadastroMed
         if (j == null)
         {
             cadastrarMed(m);
-            return m;
         }
         else
         {
             JOptionPane.showMessageDialog(null, "CRM já cadastrado.");
-            return null;
         }
     }
 

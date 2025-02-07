@@ -15,23 +15,18 @@ public class Consulta {
     private int horario;
     private double preco;
     private String especialidade;
-    Pagamento pagamento;
+    private Pagamento pagamento;
 
     public Consulta(LocalDate data, Medico medico, Paciente paciente, double duracao,
-                    int horario, double preco, String especialidade) {
+                    int horario, String especialidade) {
         this.data = data;
         this.medico = medico;
         this.paciente = paciente;
         this.duracao = duracao;
         this.horario = horario;
-        this.preco = preco;
         this.especialidade = especialidade;
     }
 
-    public double getPreco()
-    {
-        return this.pagamento.getValor();
-    }
 
     public String getCPFPaciente()
     {
@@ -86,7 +81,7 @@ public class Consulta {
 
     public void setPreco(double novoPreco)
     {
-        this.preco = novoPreco;
+        pagamento.setPreco(novoPreco);
     }
 
     public void setData(LocalDate novaData)
