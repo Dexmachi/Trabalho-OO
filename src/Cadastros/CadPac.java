@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CadPac
 {
-    private int numPac = 0;
+    private int numPac;
     private List<Paciente> pacs;
     CadConsul cadConsul;
 
@@ -16,20 +16,14 @@ public class CadPac
     {
         this.cadConsul = cadConsul;
         numPac = 0;
-        pacs = new ArrayList<Paciente>();
+        pacs = new ArrayList<>();
     }
 
-    public int cadastrarPac(Paciente p)
+    public void cadastrarPac(Paciente p)
     {
-        boolean cadastrou = pacs.add(p);
-        if(cadastrou)
-        {
-            numPac=pacs.size();
-        }
-        return numPac;
+        pacs.add(p);
+        numPac=pacs.size();
     }
-
-
 
 
     public Paciente criarPaciente()

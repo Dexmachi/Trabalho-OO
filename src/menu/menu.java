@@ -226,6 +226,7 @@ public class Menu {
                             1-Exame
                             2-Medicamento
                             3-Tratamento
+                            4- finalizar
                             0- Voltar""");
                     switch (opcao2)
                     {
@@ -242,6 +243,9 @@ public class Menu {
 
                         case "3" ->
                             //cadPres.criarTrat();
+                            menuStaff();
+                        case "4" ->
+                            //cadPres.cadPres();
                             menuStaff();
                     }
 

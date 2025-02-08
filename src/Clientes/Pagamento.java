@@ -69,12 +69,7 @@ public class Pagamento {
             System.out.println("o preço da sua desobediência é de R$" + df.format(getValor()));
         }
     }
-// * build method que usei, precisamos melhorar
-    public Pagamento(double preco, int id)
-    {
-        this.valor = preco;
-        setVencido();
-    }
+
 
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     //get e set de vencimento
@@ -103,4 +98,8 @@ public class Pagamento {
         setValorVencido();
     }
 
+    public void setPreco(double novoPreco)
+    {
+        this.valor = novoPreco;
+    }
 }

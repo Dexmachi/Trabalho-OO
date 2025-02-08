@@ -3,7 +3,6 @@ import Cadastros.CadPac;
 import Cadastros.CadastroMed;
 import Clientes.Paciente;
 import Staff.Medico;
-import Staff.Prescricoes.Consulta;
 import Menu.Menu;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or

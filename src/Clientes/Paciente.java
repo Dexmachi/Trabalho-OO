@@ -83,10 +83,7 @@ public class Paciente extends Pessoa {
     }
 
     public boolean estaDisponivel(LocalDate horario) {
-        if (cadConsul.lerConsul(horario, getCPF()) == null) {
-            return false;
-        }
-        return true;
+        return cadConsul.lerConsul(horario, getCPF()) != null;
     }
 
     public void agendarConsul(String horario) {
