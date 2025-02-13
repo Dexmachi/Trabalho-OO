@@ -11,7 +11,7 @@ import java.util.List;
 public class Consulta {
     private LocalDate data;
     private Medico medico;
-    Prescricoes p;
+    private Prescricoes p;
     private Paciente paciente;
     private double duracao;
     private boolean isAtendida=false;
@@ -107,6 +107,10 @@ public class Consulta {
     public Prescricoes getPres()
     {
         return this.p;
+    }
+
+    public void setP(Prescricoes p) {
+        this.p = p;
     }
 
     public void addPres(Prescricoes p)

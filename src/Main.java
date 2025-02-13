@@ -13,9 +13,13 @@ public class Main {
         CadastroMed cadM = new CadastroMed();
         CadConsul cadConsul = new CadConsul();
         CadPac cadPac = new CadPac(cadConsul);
-        CadPres cadPres = new CadPres(cadConsul);
 
-        Menu menu = new Menu(cadM, cadPac, cadConsul, cadPres);
+
+
+        Menu menu = new Menu(cadM, cadPac, cadConsul, null);
+        CadPres cadPres = new CadPres(cadConsul, cadM, cadPac, menu);
+        menu.setCadPres(cadPres);
+        
         Paciente paciente = new Paciente("teste", "001", "25/02/2025", cadConsul);
         cadPac.cadastrarPac(paciente);
 

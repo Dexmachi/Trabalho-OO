@@ -14,17 +14,20 @@ public class CadPres {
     private List<Tratamento> trats;
     private List<Medicamento> meds;
     CadConsul cadConsul;
-    private Menu menu;
     CadPres cadPres;
+    Menu menu;
 
-    public CadPres(CadConsul cadConsul)
+    public CadPres(CadConsul cadConsul, CadastroMed cadM, CadPac cadPac, Menu menu)
     {
         this.meds = new ArrayList<>();
         this.exs = new ArrayList<>();
         this.trats = new ArrayList<>();
         this.cadConsul = cadConsul;
-        this.cadPres = new CadPres(cadConsul);
+        this.cadPres = cadPres;
+        this.menu = menu;
     }
+
+
 
     public void criarExame()
     {
@@ -36,6 +39,7 @@ public class CadPres {
         Exame ex = new Exame(Tipo, data);
         this.exs.add(ex);
     }
+
 
     public void criarMed()
     {
@@ -64,19 +68,21 @@ public class CadPres {
         String b = JOptionPane.showInputDialog("Tem certeza de que todos os dados estão inseridos? (S/N)");
         if (b.equalsIgnoreCase("S")) {
             Consulta c = cadConsul.lerConsulCMed();
-            Prescricoes p = c.getPres();
-            for (Medicamento m : this.meds) {
+            Prescricoes p = new Prescricoes();
+            for (Medicamento m : new ArrayList<>(this.meds)) {
                 p.addMeds(m);
                 this.meds.remove(m);
             }
-            for (Exame e : this.exs) {
+            for (Exame e : new ArrayList<>(this.exs)) {
                 p.addExs(e);
                 this.exs.remove(e);
             }
-            for (Tratamento t : this.trats) {
+            for (Tratamento t : new ArrayList<>(this.trats)) {
                 p.addTrats(t);
                 this.trats.remove(t);
             }
+
+            c.setP(p);
             c.addPres(p);
         } else if (b.equalsIgnoreCase("N")) {
         menuCad();
@@ -98,7 +104,6 @@ public class CadPres {
 
             case "1" -> {
                 StringBuilder j = new StringBuilder();
-
                 for (Exame e : p.getExs()) {
                     j.append("Fazer um exame de ").append(e.getTipo()).append("no dia: ").append(e.getDataPres()).append("\n");
                 }
@@ -108,7 +113,7 @@ public class CadPres {
             case "2" -> {
                 StringBuilder j = new StringBuilder();
                 for (Medicamento m : p.getMeds()) {
-                    j.append("Tomar o medicamento: ").append(m.getNome()).append(",na quantidade: ").append(m.getQuantidade()).append(",de ").append(m.getPeriodo()).append("em ").append(m.getDias()).append("horas, por ").append(m.getDias()).append("dias\n");
+                    j.append("Tomar o medicamento: ").append(m.getNome()).append(",na quantidade: ").append(m.getQuantidade()).append(" ,de ").append(m.getPeriodo()).append(" em ").append(m.getPeriodo()).append(" horas, por ").append(m.getDias()).append(" dias\n");
                 }
                 JOptionPane.showMessageDialog(null, j.toString());
                 lerPres();
@@ -145,19 +150,19 @@ public class CadPres {
                 0 - voltar""");
         switch (b) {
             case "1" -> {
-                for (Medicamento m : p.getMeds()) {
+                for (Medicamento m : new ArrayList<>(p.getMeds())) {
                     p.getMeds().remove(m);
                 }
                 menuLimpAt(p);
             }
             case "2" -> {
-                for (Exame e : p.getExs()) {
+                for (Exame e : new ArrayList<>(p.getExs())) {
                     p.getExs().remove(e);
                 }
                 menuLimpAt(p);
             }
             case "3" -> {
-                for (Tratamento t : p.getTrats()) {
+                for (Tratamento t : new ArrayList<>(p.getTrats())) {
                     p.getTrats().remove(t);
                 }
                 menuLimpAt(p);
@@ -200,7 +205,7 @@ public class CadPres {
                 menuCad();
             }
             case "4" -> {
-                cadPres.cadPres();
+                cadPres();
                 menuCad();
             }
         }
@@ -210,13 +215,13 @@ public class CadPres {
     {
         Consulta c = cadConsul.lerConsulCMed();
         Prescricoes p = c.getPres();
-        for (Medicamento m : p.getMeds()) {
+        for (Medicamento m : new ArrayList<>(p.getMeds())) {
             p.getMeds().remove(m);
         }
-        for (Exame e : p.getExs()) {
+        for (Exame e : new ArrayList<>(p.getExs())) {
             p.getExs().remove(e);
         }
-        for (Tratamento t : p.getTrats()) {
+        for (Tratamento t : new ArrayList<>(p.getTrats())) {
             p.getTrats().remove(t);
         }
 

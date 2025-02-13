@@ -14,12 +14,8 @@ public class Prescricoes {
     private List<Tratamento> trats;
     private List<Medicamento> meds;
 
-    public Prescricoes(Consulta c, Medicamento m, Tratamento t, Exame e)
+    public Prescricoes()
     {
-        this.consul = c;
-        this.medicamento = m;
-        this.tratamento = t;
-        this.exame = e;
         this.meds = new ArrayList<>();
         this.exs = new ArrayList<>();
         this.trats = new ArrayList<>();

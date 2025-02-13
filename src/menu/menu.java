@@ -24,6 +24,10 @@ public class Menu {
         this.cadastroP = cadPac; //* recebe a instância de cadastro para usar a mesma lista de cadastros
         this.cadConsul = cadC; //* recebe a instância de cadastro para usar a mesma lista de cadastros
     }
+    public void setCadPres(CadPres cadPres)
+    {
+        this.cadPres = cadPres;
+    }
 
     /*
                         FAZER ISSO DAQUI SER LEGÍVEL PELO CÓDIGO (fazer esse menu ser recursivo)
@@ -316,4 +320,6 @@ public class Menu {
                 menuClientes();
         }
     }
+
+
 }
