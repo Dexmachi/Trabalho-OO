@@ -305,19 +305,15 @@ public class Menu {
         {
             case "0":
                 iniciarMenu();
-                break;
             case "1":
                 JOptionPane.showMessageDialog(null, "Entraremos em contato em breve para marcar sua consulta!");
                 menuClientes();
-                break;
             case "2":
                 JOptionPane.showMessageDialog(null, "Entraremos em contato para cancelar sua consulta.");
                 menuClientes();
-                break;
             case "4":
                 p.setIsPago();
                 menuClientes();
-                break;
         }
     }
 }
