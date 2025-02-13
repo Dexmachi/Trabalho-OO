@@ -43,7 +43,7 @@ public class Menu {
 
                         TODO 2 FAZER O RESTO DAS OPERAÇÕES DE PACIENTE
 
-                         TODO 3 FAZER OS HISTÓRICOS
+                        ! TODO 3 FAZER OS HISTÓRICOS
     */
 
     public void iniciarMenu()
