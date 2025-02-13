@@ -5,15 +5,19 @@ import Clientes.Pagamento;
 import Staff.Medico;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Consulta {
     private LocalDate data;
     private Medico medico;
+    Prescricoes p;
     private Paciente paciente;
     private double duracao;
     private boolean isAtendida=false;
     private int horario;
     private double preco;
+    private List<Prescricoes> Pres;
     private String especialidade;
     private Pagamento pagamento;
 
@@ -25,6 +29,7 @@ public class Consulta {
         this.duracao = duracao;
         this.horario = horario;
         this.especialidade = especialidade;
+        this.Pres = new ArrayList<>();
     }
 
 
@@ -97,5 +102,15 @@ public class Consulta {
     public Medico getMed()
     {
         return this.medico;
+    }
+
+    public Prescricoes getPres()
+    {
+        return this.p;
+    }
+
+    public void addPres(Prescricoes p)
+    {
+        this.Pres.add(p);
     }
 }

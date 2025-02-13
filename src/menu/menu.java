@@ -1,5 +1,6 @@
 package Menu;
 
+import Cadastros.CadPres;
 import Staff.Medico;
 import Clientes.Paciente;
 import Cadastros.CadastroMed;
@@ -15,8 +16,10 @@ public class Menu {
     CadastroMed cadastroM;
     CadPac cadastroP;
     CadConsul cadConsul;
-    public Menu(CadastroMed cadastroM, CadPac cadPac, CadConsul cadC)
+    CadPres cadPres;
+    public Menu(CadastroMed cadastroM, CadPac cadPac, CadConsul cadC, CadPres cadPres)
     {
+        this.cadPres = cadPres;
         this.cadastroM = cadastroM; //* recebe a instância de cadastro para usar a mesma lista de cadastros
         this.cadastroP = cadPac; //* recebe a instância de cadastro para usar a mesma lista de cadastros
         this.cadConsul = cadC; //* recebe a instância de cadastro para usar a mesma lista de cadastros
@@ -26,7 +29,7 @@ public class Menu {
                         FAZER ISSO DAQUI SER LEGÍVEL PELO CÓDIGO (fazer esse menu ser recursivo)
                         * Corrigido via implementação de métodos ao invés de código puro
 
-                        TODO 2 FAZER O SISTEMA NÃO CRASHAR CASO O USUÁRIO SELECIONE UM NÚMERO ALÉM DOS QUE COLOCAMOS PARA SEREM SELECIONADOS
+                        TODO 1 FAZER O SISTEMA NÃO CRASHAR CASO O USUÁRIO SELECIONE UM NÚMERO ALÉM DOS QUE COLOCAMOS PARA SEREM SELECIONADOS
                         !!!!!!! ainda não corrigido
 
                         FAZER O SISTEMA TER UMA ETAPA A MAIS PARA LER O USUÁRIO (input de cpf para encontrar o objeto pessoa correto)
@@ -38,7 +41,9 @@ public class Menu {
                         FAZER O SISTEMA TER UMA FORMA DE ENCONTRAR O OBJETO QUE QUEREMOS
                         * Mais um corrigido utilizando lerPaciente e lerMed
 
-                        TODO 3 FAZER O RESTO DAS OPERAÇÕES DE PACIENTE
+                        TODO 2 FAZER O RESTO DAS OPERAÇÕES DE PACIENTE
+
+                         TODO 3 FAZER OS HISTÓRICOS
     */
 
     public void iniciarMenu()
@@ -222,33 +227,64 @@ public class Menu {
                 //! sistema crud da prescrição
                 case "4":
                     opcao2 = JOptionPane.showInputDialog("""
-                            Escolha uma das opções abaixo:
-                            1-Exame
-                            2-Medicamento
+                            O que deseja fazer?
+                            1 - Cadastrar uma prescrição
+                            2 - Ler uma prescrição
+                            3 - Atualizar uma prescrição
+                            4 - Deletar uma prescrição
+                            0 - Voltar
+                            """);
+                        switch (opcao2) {
+                            case "1" -> {
+                                opcao2 = JOptionPane.showInputDialog("""
+                            Escolha uma das opções abaixo para adicionar à essa prescrição:
+                            1- Exame
+                            2- Medicamento
                             3-Tratamento
                             4- finalizar
                             0- Voltar""");
-                    switch (opcao2)
-                    {
-                        case "0" ->
-                            menuStaff();
+                                switch (opcao2)
+                                {
+                                    case "0" ->
+                                            menuStaff();
 
-                        case "1" ->
-                            //cadPres.criarExame();
-                            menuStaff();
+                                    case "1" ->
+                                    {
+                                        cadPres.criarExame();
+                                        menuStaff();
+                                    }
+                                    case "2" ->
+                                    {
+                                        cadPres.criarMed();
+                                        menuStaff();
+                                    }
 
-                        case "2" ->
-                            //cadPres.criarMed();
-                            menuStaff();
-
-                        case "3" ->
-                            //cadPres.criarTrat();
-                            menuStaff();
-                        case "4" ->
-                            //cadPres.cadPres();
-                            menuStaff();
+                                    case "3" ->
+                                    {
+                                        cadPres.criarTrat();
+                                        menuStaff();
+                                    }
+                                    case "4" ->
+                                    {
+                                        cadPres.cadPres();
+                                        menuStaff();
+                                    }
+                                }
+                                menuStaff();
+                            }
+                            case "2" -> {
+                                cadPres.lerPres();
+                                menuStaff();
+                            }
+                            case "3" -> {
+                                cadPres.atualizarPres();
+                                menuStaff();
+                            }
+                            case "4" -> {
+                                cadPres.cancelarPres();
+                                menuStaff();
+                            }
                     }
-
                     break;
             }
         }

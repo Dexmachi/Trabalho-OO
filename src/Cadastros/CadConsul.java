@@ -65,6 +65,8 @@ public class CadConsul {
 
         Consulta c = new Consulta(data, medico, paciente, duracao, horario, especialidade);
         cadastrarConsul(c);
+        medico.addConsulta(c);
+
         Pagamento pagamento = new Pagamento(preco, data);
         paciente.adicionarPagamento(pagamento);
         return c;
@@ -151,7 +153,7 @@ public class CadConsul {
 
     public Consulta lerConsulCMed()
     {
-        String datastr = JOptionPane.showInputDialog("insira a data da consulta:");
+        String datastr = JOptionPane.showInputDialog("insira a data da consulta que deseja ver:");
         LocalDate data = LocalDate.parse(datastr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         String cpf = JOptionPane.showInputDialog("insira o cpf do paciente:");
         String nome = JOptionPane.showInputDialog("insira o nome do medico:");
@@ -200,9 +202,4 @@ public class CadConsul {
         }
         return null;
     }
-
-    /*public List<Consulta> getConsuls()
-    {
-            return this.consuls;
-    }*/
 }

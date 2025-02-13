@@ -1,5 +1,6 @@
 import Cadastros.CadConsul;
 import Cadastros.CadPac;
+import Cadastros.CadPres;
 import Cadastros.CadastroMed;
 import Clientes.Paciente;
 import Staff.Medico;
@@ -12,8 +13,9 @@ public class Main {
         CadastroMed cadM = new CadastroMed();
         CadConsul cadConsul = new CadConsul();
         CadPac cadPac = new CadPac(cadConsul);
+        CadPres cadPres = new CadPres(cadConsul);
 
-        Menu menu = new Menu(cadM, cadPac, cadConsul);
+        Menu menu = new Menu(cadM, cadPac, cadConsul, cadPres);
         Paciente paciente = new Paciente("teste", "001", "25/02/2025", cadConsul);
         cadPac.cadastrarPac(paciente);
 
