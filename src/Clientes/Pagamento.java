@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Pagamento {
     private double valor;
@@ -65,9 +66,20 @@ public class Pagamento {
     {
         if(this.vencido && valor != 0.0)
         {
-            setValor(getValor()*1.1);
+            long mesesAtraso = calcularMesesAtraso();
+            setValor(getValor()*Math.pow(1.1, mesesAtraso));
             System.out.println("o preço da sua desobediência é de R$" + df.format(getValor()));
         }
+    }
+
+    private long calcularMesesAtraso() {
+        LocalDate dataAtual = LocalDate.now();
+        long meses = ChronoUnit.MONTHS.between(vencimento, dataAtual);
+        LocalDate vencimentoMaisMeses = vencimento.plusMonths(meses);
+        if (dataAtual.isAfter(vencimentoMaisMeses)) {
+            meses++;
+        }
+        return Math.max(meses, 0);
     }
 
 
