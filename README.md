@@ -30,8 +30,7 @@ O sistema centraliza as seguintes funcionalidades:
 ## 🖼️ **Diagrama UML**  
 O diagrama UML está em desenvolvimento e será disponibilizado na pasta de documentação para visualizar a relação entre entidades como `Paciente`, `Medico`, `Consulta`, `CadastroMed`, `CadPac`, `CadConsul`, `CadPres` e `Menu`.
 
-
-
+[CLIQUE AQUI](https://drive.google.com/drive/folders/1QoEI-NbRET1cxxU5YL1Cq9JUzfpoNRNA?usp=sharing)
 ---
 
 ## 🖼️ **Como executar o programa?**
