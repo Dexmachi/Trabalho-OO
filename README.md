@@ -30,6 +30,8 @@ O sistema centraliza as seguintes funcionalidades:
 ## 🖼️ **Diagrama UML**  
 O diagrama UML está em desenvolvimento e será disponibilizado na pasta de documentação para visualizar a relação entre entidades como `Paciente`, `Medico`, `Consulta`, `CadastroMed`, `CadPac`, `CadConsul`, `CadPres` e `Menu`.
 
+
+
 ---
 
 ## 🖼️ **Como executar o programa?**
@@ -105,11 +107,13 @@ O diagrama UML está em desenvolvimento e será disponibilizado na pasta de docu
 ## 💻 **Exemplos de Entradas e Funcionamento**
 
 1. **Cadastro de um Paciente**  
-   - Exemplo: `new Paciente("teste", "001", "25/02/2025", cadConsul)`.  
+   - Exemplo: `new Paciente("teste", "001", "25/02/2025", cadConsul)`.
+   - Nome: teste, cpf: 001, data de nascimnto: 25/02/2025.
    - Em seguida, `cadPac.cadastrarPac(paciente)` insere o registro no sistema.  
 
 2. **Cadastro de um Médico**  
-   - Exemplo: `new Medico("Jorge", "001", "25/02/2025", "001", "consulta")`.  
+   - Exemplo: `new Medico("Jorge", "001", "25/02/2025", "001", "consulta")`.
+   - Nome: Jorge, CRM: 001, data de nascimnto: 25/02/2025, cpf: 001
    - Em seguida, `cadM.cadastrarMed(medico)` armazena o médico.  
 
 3. **Agendamento de uma Consulta**  
