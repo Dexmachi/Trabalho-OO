@@ -248,10 +248,13 @@ public class Menu {
                         case "5" ->
                         {
                             m.historico();
+                            menuStaff();
                         }
+
                         case "6" ->
                         {
                             m.atenderConsul(cadConsul);
+                            menuStaff();
                         }
                     }
                     break;
