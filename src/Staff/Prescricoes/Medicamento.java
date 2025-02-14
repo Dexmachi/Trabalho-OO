@@ -1,11 +1,11 @@
 package Staff.Prescricoes;
 
 public class Medicamento {
-    private String nome;
-    private String tipo; // * qual o tipo de medicação? antialérgico, anticoncepcional, etc
-    private int quantidade;
-    private int Periodo; // * de quantas em quantas horas o paciente deverá tomar a medicação
-    private int Dias; // * quantos dias o paciente deverá ser medicado
+    private final String nome;
+    private final String tipo; // * qual o tipo de medicação? antialérgico, anticoncepcional, etc
+    private final int quantidade;
+    private final int Periodo; // * de quantas em quantas horas o paciente deverá tomar a medicação
+    private final int Dias; // * quantos dias o paciente deverá ser medicado
     public Medicamento(String nome, String tipo, int quantidade, int Periodo, int Dias)
     {
         this.nome = nome;
@@ -19,6 +19,11 @@ public class Medicamento {
     {
         return this.nome;
     }
+
+    public String getTipo()
+        {
+            return this.tipo;
+        }
 
     public int getQuantidade()
     {

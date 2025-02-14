@@ -6,13 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Prescricoes {
-    private Consulta consul;
-    private Medicamento medicamento;
-    private Tratamento tratamento;
-    private Exame exame;
-    private List<Exame> exs;
-    private List<Tratamento> trats;
-    private List<Medicamento> meds;
+    private final List<Exame> exs;
+    private final List<Tratamento> trats;
+    private final List<Medicamento> meds;
 
     public Prescricoes()
     {

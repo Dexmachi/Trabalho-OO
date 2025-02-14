@@ -10,7 +10,7 @@ public class Pagamento {
     private double valor;
     private boolean pago = false;
     private boolean vencido = false;
-    private LocalDate dataCriacao;
+    private final LocalDate dataCriacao;
     private LocalDate vencimento;
 
 
@@ -99,10 +99,6 @@ public class Pagamento {
         return this.vencimento;
     }
 
-    public boolean isPago()
-    {
-        return pago;
-    }
 
     public void func()
     {

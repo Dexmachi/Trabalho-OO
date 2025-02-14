@@ -14,16 +14,14 @@ import java.util.List;
 
 
 public class CadConsul {
-    private List<Consulta> consuls;
+    private final List<Consulta> consuls;
 
     public CadConsul() {
-        int numConsul = 0;
-        consuls = new ArrayList<>();
+        this.consuls = new ArrayList<>();
     }
 
     public void cadastrarConsul(Consulta c) {
-        consuls.add(c);
-        int numConsul = consuls.size();
+        this.consuls.add(c);
     }
 
     public Consulta criarConsul(CadastroMed cadM, CadPac cadPac) {
@@ -74,7 +72,7 @@ public class CadConsul {
 
     public Consulta lerConsul (LocalDate data, String cpf)
     {
-        for(Consulta c : consuls)
+        for(Consulta c : this.consuls)
         {
             if(c.getData().equals(data))
             {
@@ -144,9 +142,9 @@ public class CadConsul {
     {
         boolean remove = false;
         Consulta remover = lerConsulCMed();
-        if(remover != null && consuls != null)
+        if(remover != null)
         {
-            remove = consuls.remove(remover);
+            remove = this.consuls.remove(remover);
         }
         return remove;
     }
@@ -157,7 +155,7 @@ public class CadConsul {
         LocalDate data = LocalDate.parse(datastr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         String cpf = JOptionPane.showInputDialog("insira o cpf do paciente:");
         String nome = JOptionPane.showInputDialog("insira o nome do medico:");
-        for(Consulta c : consuls) {
+        for(Consulta c : this.consuls) {
             System.out.println(c.getData());
             System.out.println(c.getMed().getNome());
             System.out.println(c.getPaciente().getCPF());

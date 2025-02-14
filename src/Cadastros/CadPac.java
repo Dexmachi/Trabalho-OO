@@ -8,21 +8,18 @@ import java.util.List;
 
 public class CadPac
 {
-    private int numPac;
-    private List<Paciente> pacs;
+    private final List<Paciente> pacs;
     CadConsul cadConsul;
 
     public CadPac(CadConsul cadConsul)
     {
         this.cadConsul = cadConsul;
-        numPac = 0;
-        pacs = new ArrayList<>();
+        this.pacs = new ArrayList<>();
     }
 
     public void cadastrarPac(Paciente p)
     {
-        pacs.add(p);
-        numPac=pacs.size();
+        this.pacs.add(p);
     }
 
 
@@ -50,7 +47,7 @@ public class CadPac
 
     public Paciente lerPaciente (String CPF)
     {
-        for(Paciente p : pacs)
+        for(Paciente p : this.pacs)
         {
             if(p.getCPF().trim().equalsIgnoreCase(CPF.trim()))
             {
@@ -93,7 +90,7 @@ public class CadPac
         Paciente remover = lerPaciente(p.getCPF());
         if(remover != null)
         {
-            remove = pacs.remove(remover);
+            remove = this.pacs.remove(remover);
         }
         return remove;
     }

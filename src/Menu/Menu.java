@@ -116,8 +116,11 @@ public class Menu {
                             1-criar médico
                             2-ler médico
                             3-atualizar médico
-                            4-deletar médico""");
+                            4-deletar médico
+                            0 - Voltar""");
                     switch (opcao2) {
+                        case "0" ->
+                            iniciarMenu();
                         case "1" -> {
                             cadastroM.criarMed();
                             menuStaff();
@@ -141,8 +144,14 @@ public class Menu {
                         case "4" -> {
                             question = JOptionPane.showInputDialog("Informe o CRM do médico:");
                             Medico med = cadastroM.lerMedico(question);
-                            if (med != null) {
-                                cadastroM.deletarMed(med);
+                            boolean c = false;
+                            if (med != null)
+                            {
+                                c = cadastroM.deletarMed(med);
+                            }
+                            if(c)
+                            {
+                                JOptionPane.showMessageDialog(null, "Deletando o médico com CRM: " + med.getCRM() + " e Nome: " + med.getNome());
                             }
                             menuStaff();
                         }
@@ -157,8 +166,11 @@ public class Menu {
                             1-criar paciente
                             2-ler paciente
                             3-atualizar paciente
-                            4-deletar paciente""");
+                            4-deletar paciente
+                            0 - voltar""");
                     switch (opcao2) {
+                        case "0" ->
+                            iniciarMenu();
                         case "1" -> {
                             p = cadastroP.criarPaciente();
                             menuStaff();
@@ -204,6 +216,8 @@ public class Menu {
                             4-deletar consulta
                             0 - voltar""");
                     switch (opcao2) {
+                        case "0" ->
+                            iniciarMenu();
                         case "1" -> {
                             Consulta c = cadConsul.criarConsul(cadastroM, cadastroP);
                             JOptionPane.showMessageDialog(null, c.toString());
@@ -221,7 +235,12 @@ public class Menu {
                             menuStaff();
                         }
                         case "4" -> {
-                            cadConsul.cancelarConsul();
+                            boolean c;
+                            c = cadConsul.cancelarConsul();
+                            if(c)
+                            {
+                                JOptionPane.showMessageDialog(null, "Cancelando consulta");
+                            }
                             menuStaff();
                         }
                     }
@@ -236,9 +255,10 @@ public class Menu {
                             2 - Ler uma prescrição
                             3 - Atualizar uma prescrição
                             4 - Deletar uma prescrição
-                            0 - Voltar
-                            """);
+                            0 - Voltar""");
                         switch (opcao2) {
+                            case "0" ->
+                                iniciarMenu();
                             case "1" -> {
                                 opcao2 = JOptionPane.showInputDialog("""
                             Escolha uma das opções abaixo para adicionar à essa prescrição:

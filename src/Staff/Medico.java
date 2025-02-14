@@ -9,8 +9,8 @@ public class Medico extends Pessoa {
     // atributos //
     private String CRM;
     private String especialidade;
-    private List<Integer> horariosOcupados;
-    private List<Consulta> consultas;
+    private final List<Integer> horariosOcupados;
+    private final List<Consulta> consultas;
 
     // funções //
     public Medico(String nome, String cpf, String dataNascimento, String crm, String especialidade) {

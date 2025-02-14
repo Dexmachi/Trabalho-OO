@@ -8,19 +8,17 @@ import java.util.List;
 
 public class CadastroMed
 {
-    private int numMed;
-    private List<Medico> meds;
+
+    private final List<Medico> meds;
 
     public CadastroMed()
     {
-        numMed = 0;
         this.meds = new ArrayList<>();
     }
 
     public void cadastrarMed(Medico m)
     {
-        meds.add(m);
-        numMed=meds.size();
+        this.meds.add(m);
     }
 
     public void criarMed()
@@ -46,7 +44,7 @@ public class CadastroMed
 
     public Medico lerMedico (String CRM)
     {
-        for(Medico m : meds)
+        for(Medico m : this.meds)
         {
             if(m.getCRM().trim().equalsIgnoreCase(CRM.trim()))
             {
@@ -89,7 +87,7 @@ public class CadastroMed
         Medico remover = lerMedico(m.getCRM());
         if(remover != null)
         {
-            remove = meds.remove(remover);
+            remove = this.meds.remove(remover);
         }
         return remove;
     }

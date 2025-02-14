@@ -1,8 +1,8 @@
 package Staff.Prescricoes;
 
 public class Tratamento {
-    private String nome;
-    private int repeticoes;
+    private final String nome;
+    private final int repeticoes;
 
     public Tratamento(String nome, int repeticoes)
     {

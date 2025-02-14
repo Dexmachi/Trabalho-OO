@@ -36,4 +36,9 @@ public abstract class Pessoa {
     {
         this.dataNascimento = d;
     }
+
+    public String getDataNascimento()
+    {
+        return this.dataNascimento;
+    }
 }

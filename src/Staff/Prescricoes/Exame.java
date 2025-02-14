@@ -1,11 +1,10 @@
 package Staff.Prescricoes;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Exame {
-    private String tipo;
-    private LocalDate dataPres;
+    private final String tipo;
+    private final LocalDate dataPres;
 
     public Exame(String tipo, LocalDate dataPres)
     {

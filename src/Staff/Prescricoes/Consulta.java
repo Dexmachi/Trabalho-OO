@@ -16,8 +16,7 @@ public class Consulta {
     private double duracao;
     private boolean isAtendida=false;
     private int horario;
-    private double preco;
-    private List<Prescricoes> Pres;
+    private final List<Prescricoes> Pres;
     private String especialidade;
     private Pagamento pagamento;
 

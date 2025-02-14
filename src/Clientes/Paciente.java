@@ -13,9 +13,9 @@ import java.util.List;
 public class Paciente extends Pessoa {
     // atributos //
     private Pagamento pagamento;
-    private List<Pagamento> pagamentos;
-    private List<Consulta> consultas;
-    private CadConsul cadConsul;
+    private final List<Pagamento> pagamentos;
+    private final List<Consulta> consultas;
+    private final CadConsul cadConsul;
 
     // funções //
     public Paciente(String nome, String cpf, String dataNascimento, CadConsul c) {
@@ -30,13 +30,14 @@ public class Paciente extends Pessoa {
     }
 
     public void adicionarPagamento(Pagamento p) {
-        pagamentos.add(p);
+        this.pagamentos.add(p);
     }
 
     public List<Pagamento> getPagamentosPendentes() {
         List<Pagamento> pendentes = new ArrayList<>();
-        for (Pagamento pagamento : pagamentos) {
-            if (!pagamento.isPago()) {
+        boolean c = pagamento.getPago();
+        for (Pagamento pagamento : this.pagamentos) {
+            if (!c) {
                 pendentes.add(pagamento);
             }
         }
@@ -51,7 +52,7 @@ public class Paciente extends Pessoa {
         try {
             LocalDate d = LocalDate.parse(data, formato);
 
-            for (Pagamento m : pagamentos) {
+            for (Pagamento m : this.pagamentos) {
                 if (m.getDataCriacao().isEqual(d)) {
                     return m;
                 }
@@ -91,7 +92,7 @@ public class Paciente extends Pessoa {
         if (estaDisponivel(d)) {
             Consulta con = cadConsul.lerConsul(d, getCPF());
             if (con != null) {
-                consultas.add(con);
+                this.consultas.add(con);
             }
         }
     }
