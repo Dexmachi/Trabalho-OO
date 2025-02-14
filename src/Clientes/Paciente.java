@@ -84,7 +84,7 @@ public class Paciente extends Pessoa {
 
     public void showPrescricoes(CadPres cp)
     {
-        cp.lerPres();
+        cp.lerPresPraPac();
     }
 
     public Pagamento lerBoletos() {

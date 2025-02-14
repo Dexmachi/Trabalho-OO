@@ -133,6 +133,48 @@ public class CadPres {
 
     }
 
+    public void lerPresPraPac()
+    {
+        Consulta c = cadConsul.lerConsulCMed();
+        Prescricoes p = c.getPres();
+        String opcao2 = JOptionPane.showInputDialog("""
+                Escolha uma das opções abaixo que deseje ler:
+                1- Exame
+                2- Medicamento
+                3-Tratamento
+                0- Voltar""");
+        switch (opcao2) {
+            case "0" -> menu.menuClientes();
+
+            case "1" -> {
+                StringBuilder j = new StringBuilder();
+                for (Exame e : p.getExs()) {
+                    j.append("Fazer um exame de ").append(e.getTipo()).append("no dia: ").append(e.getDataPres()).append("\n");
+                }
+                JOptionPane.showMessageDialog(null, j.toString());
+                lerPres();
+            }
+            case "2" -> {
+                StringBuilder j = new StringBuilder();
+                for (Medicamento m : p.getMeds()) {
+                    j.append("Tomar o medicamento: ").append(m.getNome()).append(",na quantidade: ").append(m.getQuantidade()).append(" ,de ").append(m.getPeriodo()).append(" em ").append(m.getPeriodo()).append(" horas, por ").append(m.getDias()).append(" dias\n");
+                }
+                JOptionPane.showMessageDialog(null, j.toString());
+                lerPres();
+            }
+
+            case "3" -> {
+                StringBuilder j = new StringBuilder();
+                for (Tratamento t : p.getTrats()) {
+                    j.append("Realizar o tratamento: ").append(t.getNome()).append(", ").append(t.getRepeticoes()).append(" vezes");
+                }
+                JOptionPane.showMessageDialog(null, j.toString());
+                lerPres();
+            }
+        }
+
+    }
+
     public void atualizarPres()
     {
         Consulta c = cadConsul.lerConsulCMed();
