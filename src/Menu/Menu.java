@@ -45,9 +45,6 @@ public class Menu {
                         FAZER O SISTEMA TER UMA FORMA DE ENCONTRAR O OBJETO QUE QUEREMOS
                         * Mais um corrigido utilizando lerPaciente e lerMed
 
-                        TODO 2 FAZER O RESTO DAS OPERAÇÕES DE PACIENTE
-
-                        ! TODO 3 FAZER OS HISTÓRICOS
     */
 
     public void iniciarMenu()
