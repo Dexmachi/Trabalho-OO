@@ -53,17 +53,17 @@ O diagrama UML está em desenvolvimento e será disponibilizado na pasta de docu
   - Métodos de acesso e manipulação do histórico ou dados do paciente.  
 - **Classe `Medico`**:  
   - Também estende `Pessoa`.  
-  - Atributos adicionais: Nome, CRM, especialidade.  
+  - Atributos adicionais: CRM, especialidade.  
   - Métodos para prescrever medicamentos/exames, consultar histórico profissional, etc.  
 - **Cadastro de Usuários**:  
-  - **`CadPac`** gerencia a lista de pacientes (adicionar, remover, buscar).  
-  - **`CadastroMed`** gerencia a lista de médicos (adicionar, remover, buscar).  
+  - **`CadPac`** gerencia a lista de pacientes (adicionar, remover, buscar, atualizar).  
+  - **`CadastroMed`** gerencia a lista de médicos (adicionar, remover, buscar, atualizar).  
 
 ### 2. Agendamento de Consultas  
 - **Classe `CadConsul`**:  
   - Controla a criação, exclusão e listagem de consultas.  
   - Verifica disponibilidade de médicos e pacientes (em expansão).  
-  - Poderá envolver validações e exceções personalizadas (como conflitos de horário).  
+  - Envolve validações e exceções personalizadas (como conflitos de horário).  
 
 ### 3. Prescrições e Exames  
 - **Classe `CadPres`**:  
@@ -93,7 +93,9 @@ O diagrama UML está em desenvolvimento e será disponibilizado na pasta de docu
 3. **Clientes**  
    - `Paciente.java` → Representa o paciente, contendo dados específicos e métodos associados.  
 4. **Staff**  
-   - `Medico.java` → Representa o médico, com informações adicionais como CRM e especialidade.  
+   - `Medico.java` → Representa o médico, com informações adicionais como CRM e especialidade.
+5. **Prescricoes**
+    - `Consulta.java` armazena `Prescricoes.java` que por sua vez armazena `Exame.java`, `Medicamento.java` e `Tratamento.java`.
 
 ---
 
@@ -118,7 +120,7 @@ O diagrama UML está em desenvolvimento e será disponibilizado na pasta de docu
 
 4. **Execução do Programa** (via classe `Main`)  
    - Instancia objetos de cadastro: `CadastroMed`, `CadPac`, `CadConsul`, `CadPres`.  
-   - Chama `menu.iniciarMenu()` para fornecer interface de decisão ao usuário.  
+   - Chama `Menu.iniciarMenu()` para fornecer interface de decisão ao usuário.  
 
 Use esses exemplos para testar e validar o comportamento de cada parte do sistema.  
 

@@ -14,7 +14,8 @@ public class CadPres {
     private List<Tratamento> trats;
     private List<Medicamento> meds;
     CadConsul cadConsul;
-    CadPres cadPres;
+    CadPac cadPac;
+    CadastroMed cadM;
     Menu menu;
 
     public CadPres(CadConsul cadConsul, CadastroMed cadM, CadPac cadPac, Menu menu)
@@ -23,7 +24,8 @@ public class CadPres {
         this.exs = new ArrayList<>();
         this.trats = new ArrayList<>();
         this.cadConsul = cadConsul;
-        this.cadPres = cadPres;
+        this.cadM = cadM;
+        this.cadPac = cadPac;
         this.menu = menu;
     }
 
@@ -192,16 +194,16 @@ public class CadPres {
                 menu.menuStaff();
 
             case "1" -> {
-                cadPres.criarExame();
+                criarExame();
                 menuCad();
             }
             case "2" -> {
-                cadPres.criarMed();
+                criarMed();
                 menuCad();
             }
 
             case "3" -> {
-                cadPres.criarTrat();
+                criarTrat();
                 menuCad();
             }
             case "4" -> {
