@@ -3,7 +3,7 @@ import Cadastros.CadConsul;
 import Cadastros.CadPres;
 import Pessoas.Pessoa;
 import Staff.Prescricoes.Consulta;
-import Staff.Prescricoes.Prescricoes;
+
 
 import javax.swing.*;
 import java.time.LocalDate;
