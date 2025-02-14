@@ -101,7 +101,7 @@ O diagrama UML está em desenvolvimento e será disponibilizado na pasta de docu
 ---
 
 ## 📎 **Links Importantes**  
-📄 [Relatório do Projeto](https://docs.google.com/document/d/1fNnKa6suEFJWIc99kBT06Rlkf1g5YCdsVFzcoOHz3Hs/edit?tab=t.0) (PDF)
+📄 [Relatório do Projeto](https://drive.google.com/drive/folders/1Q75sfF1lBK0VQ9cw1dvMnUe_U_m1ezMk?usp=drive_link) (PDF)
 
 ---
 
