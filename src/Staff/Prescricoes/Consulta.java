@@ -32,11 +32,6 @@ public class Consulta {
     }
 
 
-    public String getCPFPaciente()
-    {
-        return this.paciente.getCPF();
-    }
-
     public Paciente getPac() {
         return this.paciente;
     }
@@ -96,11 +91,6 @@ public class Consulta {
     public void setData(LocalDate novaData)
     {
         this.data = novaData;
-    }
-
-    public Object getCRMMed()
-    {
-        return this.medico.getCRM();
     }
 
     public Medico getMed()

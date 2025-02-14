@@ -30,10 +30,6 @@ public class Paciente extends Pessoa {
         return super.getCPF();
     }
 
-    public List<Pagamento> getPagamentos() {
-        return this.pagamentos;
-    }
-
     public void adicionarPagamento(Pagamento p) {
         this.pagamentos.add(p);
     }

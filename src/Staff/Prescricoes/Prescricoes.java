@@ -1,6 +1,5 @@
 package Staff.Prescricoes;
 
-import Clientes.Paciente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,12 +33,6 @@ public class Prescricoes {
         return "";
     }
 
-    public int getQtdMed(){
-        for(Medicamento med : meds) {
-            return med.getQuantidade();
-        }
-        return 0;
-    }
 
     public int getTmpMed()
     {

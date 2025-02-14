@@ -67,7 +67,6 @@ public class Pagamento {
     }
 
 // set que faz o valor receber uma multa básica após vencido ser = true
-//TODO: fazer esta multa ser aumentada dependendo do mês (10% a mais ao mês)
     public void setValorVencido()
     {
         if(this.vencido && valor != 0.0)
@@ -106,11 +105,6 @@ public class Pagamento {
     }
 
 
-    public void func()
-    {
-        setVencido();
-        setValorVencido();
-    }
 
     public void setPreco(double novoPreco)
     {

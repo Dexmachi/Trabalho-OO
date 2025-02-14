@@ -11,34 +11,25 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getNome()
-    {
+    public String getNome() {
         return this.nome;
     }
 
 
-    public String getCPF()
-    {
+    public String getCPF() {
         return this.cpf;
     }
 
-    public void setNome(String n)
-    {
+    public void setNome(String n) {
         this.nome = n;
     }
 
-    public void setCPF(String c)
-    {
+    public void setCPF(String c) {
         this.cpf = c;
     }
 
-    public void setDataNascimento(String d)
-    {
+    public void setDataNascimento(String d) {
         this.dataNascimento = d;
     }
-
-    public String getDataNascimento()
-    {
-        return this.dataNascimento;
-    }
 }
+

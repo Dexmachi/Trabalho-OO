@@ -10,7 +10,6 @@ public class CadPac
 {
     private final List<Paciente> pacs;
     CadConsul cadConsul;
-
     public CadPac(CadConsul cadConsul)
     {
         this.cadConsul = cadConsul;
