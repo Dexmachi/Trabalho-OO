@@ -37,7 +37,7 @@ public class Consulta {
         return this.paciente.getCPF();
     }
 
-    public Paciente getPaciente() {
+    public Paciente getPac() {
         return this.paciente;
     }
 
@@ -52,6 +52,11 @@ public class Consulta {
 
     public void isAtendida() {
         this.isAtendida = true;
+    }
+
+    public boolean getAtendida()
+    {
+        return this.isAtendida;
     }
 
     public String getEspecialidade() {
@@ -106,6 +111,11 @@ public class Consulta {
     public Prescricoes getPres()
     {
         return this.p;
+    }
+
+    public List<Prescricoes> getListPres()
+    {
+        return this.Pres;
     }
 
     public void setP(Prescricoes p) {

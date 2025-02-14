@@ -49,15 +49,21 @@ public class Pagamento {
         this.pago=pago;
     }
 
+    public LocalDate getDataVencimento()
+    {
+        return this.vencimento;
+    }
+
 
     DecimalFormat df = new DecimalFormat("#.00");
 // set que checa se o valor está vencido //
-    public void setVencido()
+    public boolean setVencido()
     {
         if (getVencimento() != null && getVencimento().isBefore(LocalDate.now()) && !this.pago)
         {
             this.vencido = true;
         }
+        return this.vencido;
     }
 
 // set que faz o valor receber uma multa básica após vencido ser = true

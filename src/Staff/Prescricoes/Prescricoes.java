@@ -17,6 +17,57 @@ public class Prescricoes {
         this.trats = new ArrayList<>();
     }
 
+    public String getTipoExs()
+    {
+        for(Exame ex : exs)
+        {
+            return ex.getTipo();
+        }
+        return "";
+    }
+
+    public String getNomeMed()
+    {
+        for(Medicamento med : meds) {
+            return med.getNome();
+        }
+        return "";
+    }
+
+    public int getQtdMed(){
+        for(Medicamento med : meds) {
+            return med.getQuantidade();
+        }
+        return 0;
+    }
+
+    public int getTmpMed()
+    {
+        for(Medicamento med : meds)
+        {
+            return med.getDias();
+        }
+        return 0;
+    }
+
+    public String getTipoTrat()
+    {
+        for(Tratamento tr : trats)
+        {
+            return tr.getNome();
+        }
+        return "";
+    }
+
+    public int getVezesTrat()
+    {
+        for (Tratamento tr : trats)
+        {
+            return tr.getRepeticoes();
+        }
+        return 0;
+    }
+
     public void addMeds(Medicamento m)
     {
         this.meds.add(m);

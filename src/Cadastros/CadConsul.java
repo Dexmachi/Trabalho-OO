@@ -76,7 +76,7 @@ public class CadConsul {
         {
             if(c.getData().equals(data))
             {
-                Paciente p = c.getPaciente();
+                Paciente p = c.getPac();
                 if(p.getCPF().equalsIgnoreCase(cpf))
                 {
                     return c;
@@ -158,10 +158,10 @@ public class CadConsul {
         for(Consulta c : this.consuls) {
             System.out.println(c.getData());
             System.out.println(c.getMed().getNome());
-            System.out.println(c.getPaciente().getCPF());
+            System.out.println(c.getPac().getCPF());
             if (c.getData().equals(data))
             {
-                Paciente p = c.getPaciente();
+                Paciente p = c.getPac();
                 if (p.getCPF().equalsIgnoreCase(cpf)) {
                     Medico m = c.getMed();
                     if (m.getNome().equalsIgnoreCase(nome)) {

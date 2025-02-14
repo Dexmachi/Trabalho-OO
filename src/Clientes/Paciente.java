@@ -2,6 +2,7 @@ package Clientes;
 import Cadastros.CadConsul;
 import Pessoas.Pessoa;
 import Staff.Prescricoes.Consulta;
+import Staff.Prescricoes.Prescricoes;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -29,6 +30,10 @@ public class Paciente extends Pessoa {
         return super.getCPF();
     }
 
+    public List<Pagamento> getPagamentos() {
+        return this.pagamentos;
+    }
+
     public void adicionarPagamento(Pagamento p) {
         this.pagamentos.add(p);
     }
@@ -42,6 +47,54 @@ public class Paciente extends Pessoa {
             }
         }
         return pendentes;
+    }
+
+    public void showPendentes()
+    {
+            for (Pagamento b : getPagamentosPendentes()) {
+                if(b.setVencido())
+                {
+                    JOptionPane.showMessageDialog(null, "pagamento vence dia: " + b.getDataVencimento() + " e seu valor é de: R$" + b.getValor()+"\n");
+                }
+                else if(!b.setVencido())
+                {
+                    JOptionPane.showMessageDialog(null, "pagamento venceu dia: " + b.getDataVencimento() + " e seu valor com multa é de: R$" + b.getValor()+"\n");
+                }
+            }
+    }
+
+    public void historico()
+    {
+        if(this.consultas !=null)
+        {
+            for (Consulta b : this.consultas)
+            {
+                if (b.getAtendida())
+                {
+                    JOptionPane.showMessageDialog(null, "Você tem uma consulta agendada para o dia: " + b.getData() + " às: " + b.getHorario() + " de " + b.getEspecialidade() + " com o Doutor: " + b.getMed().getNome() + "\n");
+                }
+                else if (!b.getAtendida())
+                {
+                    JOptionPane.showMessageDialog(null, "Você compareceu à uma consulta no dia: " + b.getData() + " às: " + b.getHorario() + " de " + b.getEspecialidade() + " com o Doutor: " + b.getMed().getNome() + "\n");
+                }
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "você ainda não teve consultas agendadas");
+        }
+    }
+
+    public void showPrescricoes(CadConsul cc)
+    {
+        Consulta c = cc.lerConsulCMed();
+        List<Prescricoes> pres = c.getListPres();
+        for(Prescricoes b : pres)
+        {
+            JOptionPane.showMessageDialog(null, "O médico"+c.getMed().getNome()+ "te receitou: \nFazer um exame de "+b.getTipoExs()+"\n"+"Tomar remédio de nome: " +b.getNomeMed()+" por "+b.getTmpMed()+" dias\nE fazer tratamento de " +b.getTipoTrat()+", "+b.getVezesTrat()+" vezes");
+        }
+
+
     }
 
     public Pagamento lerBoletos() {
@@ -58,7 +111,7 @@ public class Paciente extends Pessoa {
                 }
             }
         } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(null, "Data inválida. Por favor, use o formato dd/mm/yyyy digitando as /.");
+            JOptionPane.showMessageDialog(null, "Data inválida. Por favor, use o formato dd/mm/yyyy digitando as '/' .");
             lerBoletos();
         }
 

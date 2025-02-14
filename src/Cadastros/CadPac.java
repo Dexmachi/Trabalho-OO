@@ -54,7 +54,7 @@ public class CadPac
                 return p;
             }
         }
-        System.out.println("Paciente com CPF " + CPF + " não encontrado.");
+        JOptionPane.showMessageDialog(null, "Paciente com CPF " + CPF + " não encontrado.");
         return null;
     }
 

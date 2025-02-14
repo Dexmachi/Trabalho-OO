@@ -210,10 +210,12 @@ public class Menu {
                 case "3":
                     opcao2 = JOptionPane.showInputDialog("""
                             Escolha uma das opções abaixo:
-                            1-criar consulta
-                            2-ler consulta
-                            3-atualizar consulta
-                            4-deletar consulta
+                            1 - criar consulta
+                            2 - ler consulta
+                            3 - atualizar consulta
+                            4 - deletar consulta
+                            5 - atender uma consulta
+                            6 - mostrar histórico de consultas
                             0 - voltar""");
                     switch (opcao2) {
                         case "0" ->
@@ -226,7 +228,7 @@ public class Menu {
                         case "2" -> {
                             Consulta c = cadConsul.lerConsulCMed();
                             if (c != null) {
-                                JOptionPane.showMessageDialog(null, "Consulta dia: " + c.getData() + " Hora: " + c.getHorario() + " Com o paciente: " + c.getPaciente().getNome() + " e médico: " + c.getMed().getNome());
+                                JOptionPane.showMessageDialog(null, "Consulta dia: " + c.getData() + " Hora: " + c.getHorario() + " Com o paciente: " + c.getPac().getNome() + " e médico: " + c.getMed().getNome());
                             }
                             menuStaff();
                         }
@@ -242,6 +244,14 @@ public class Menu {
                                 JOptionPane.showMessageDialog(null, "Cancelando consulta");
                             }
                             menuStaff();
+                        }
+                        case "5" ->
+                        {
+                            m.historico();
+                        }
+                        case "6" ->
+                        {
+                            m.atenderConsul(cadConsul);
                         }
                     }
                     break;
@@ -320,7 +330,7 @@ public class Menu {
                 O que deseja fazer:
                 1 - Marcar consulta
                 2 - Cancelar consulta
-                3 - Ver boletos
+                3 - Ver boletos não pagos
                 4 - Pagar boleto
                 5 - Ver histórico de consultas
                 6 - Ver prescrições
@@ -335,8 +345,17 @@ public class Menu {
             case "2":
                 JOptionPane.showMessageDialog(null, "Entraremos em contato para cancelar sua consulta.");
                 menuClientes();
+            case "3":
+                p.showPendentes();
+                menuClientes();
             case "4":
                 p.setIsPago();
+                menuClientes();
+            case "5":
+                p.historico();
+                menuClientes();
+            case "6":
+                p.showPrescricoes(cadConsul);
                 menuClientes();
         }
     }

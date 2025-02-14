@@ -1,7 +1,9 @@
 package Staff;
+import Cadastros.CadConsul;
 import Pessoas.Pessoa;
 import Staff.Prescricoes.Consulta;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,35 @@ public class Medico extends Pessoa {
         this.especialidade = especialidade;
         this.horariosOcupados = new ArrayList<>();
         this.consultas = new ArrayList<>();
+    }
+
+    public void atenderConsul(CadConsul cc)
+    {
+        Consulta c = cc.lerConsulCMed();
+        c.isAtendida();
+    }
+
+
+    public void historico()
+    {
+        if(this.consultas !=null)
+        {
+            for (Consulta b : this.consultas)
+            {
+                if (b.getAtendida())
+                {
+                    JOptionPane.showMessageDialog(null, "Você tem uma consulta agendada para o dia: " + b.getData() + " às: " + b.getHorario() + " de " + b.getEspecialidade() + " com o Paciente: " + b.getPac().getNome() + "\n");
+                }
+                else if (!b.getAtendida())
+                {
+                    JOptionPane.showMessageDialog(null, "Você atendeu à uma consulta no dia: " + b.getData() + " às: " + b.getHorario() + " de " + b.getEspecialidade() + " com o Paciente: " + b.getPac().getNome() + "\n");
+                }
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "você ainda não teve consultas agendadas");
+        }
     }
 
     public String getCRM() {
