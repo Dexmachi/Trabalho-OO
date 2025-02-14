@@ -355,7 +355,7 @@ public class Menu {
                 p.historico();
                 menuClientes();
             case "6":
-                p.showPrescricoes(cadConsul);
+                p.showPrescricoes(cadPres);
                 menuClientes();
         }
     }

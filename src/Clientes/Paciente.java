@@ -1,5 +1,6 @@
 package Clientes;
 import Cadastros.CadConsul;
+import Cadastros.CadPres;
 import Pessoas.Pessoa;
 import Staff.Prescricoes.Consulta;
 import Staff.Prescricoes.Prescricoes;
@@ -81,16 +82,9 @@ public class Paciente extends Pessoa {
         }
     }
 
-    public void showPrescricoes(CadConsul cc)
+    public void showPrescricoes(CadPres cp)
     {
-        Consulta c = cc.lerConsulCMed();
-        List<Prescricoes> pres = c.getListPres();
-        for(Prescricoes b : pres)
-        {
-            JOptionPane.showMessageDialog(null, "O médico"+c.getMed().getNome()+ "te receitou: \nFazer um exame de "+b.getTipoExs()+"\n"+"Tomar remédio de nome: " +b.getNomeMed()+" por "+b.getTmpMed()+" dias\nE fazer tratamento de " +b.getTipoTrat()+", "+b.getVezesTrat()+" vezes");
-        }
-
-
+        cp.lerPres();
     }
 
     public Pagamento lerBoletos() {
