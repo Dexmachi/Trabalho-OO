@@ -242,13 +242,13 @@ public class Menu {
                             }
                             menuStaff();
                         }
-                        case "5" ->
+                        case "6" ->
                         {
                             m.historico();
                             menuStaff();
                         }
 
-                        case "6" ->
+                        case "5" ->
                         {
                             m.atenderConsul(cadConsul);
                             menuStaff();
@@ -319,6 +319,13 @@ public class Menu {
                                 menuStaff();
                             }
                     }
+
+                case "5":
+                    m.historico();
+                    menuStaff();
+                case "6":
+                    m.atenderConsul(cadConsul);
+                    menuStaff();
                     break;
             }
         }

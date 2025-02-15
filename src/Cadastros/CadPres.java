@@ -149,7 +149,7 @@ public class CadPres {
             case "1" -> {
                 StringBuilder j = new StringBuilder();
                 for (Exame e : p.getExs()) {
-                    j.append("Fazer um exame de ").append(e.getTipo()).append("no dia: ").append(e.getDataPres()).append("\n");
+                    j.append("Fazer um exame de ").append(e.getTipo()).append(" no dia: ").append(e.getDataPres()).append("\n");
                 }
                 JOptionPane.showMessageDialog(null, j.toString());
                 lerPres();
@@ -157,7 +157,7 @@ public class CadPres {
             case "2" -> {
                 StringBuilder j = new StringBuilder();
                 for (Medicamento m : p.getMeds()) {
-                    j.append("Tomar o medicamento: ").append(m.getNome()).append(",na quantidade: ").append(m.getQuantidade()).append(" ,de ").append(m.getPeriodo()).append(" em ").append(m.getPeriodo()).append(" horas, por ").append(m.getDias()).append(" dias\n");
+                    j.append("Tomar o medicamento: ").append(m.getNome()).append(",na quantidade: ").append(m.getQuantidade()).append(", de ").append(m.getPeriodo()).append(" em ").append(m.getPeriodo()).append(" horas, por ").append(m.getDias()).append(" dias\n");
                 }
                 JOptionPane.showMessageDialog(null, j.toString());
                 lerPres();
