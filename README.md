@@ -41,8 +41,8 @@ O diagrama UML está em desenvolvimento e será disponibilizado na pasta de docu
 2. Descompacte o arquivo e abra a pasta `Pasta-exemplo` no seu editor de código (ou a pasta que você criou para o projeto).  
 3. Instale e habilite os recursos necessários para desenvolvimento em Java no VS Code, por exemplo o [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack).  
 4. Na pasta `src`, localize o arquivo `Main.java`.  
-5. Abra o arquivo e, com o botão direito do mouse, selecione **Run Java** para iniciar o programa.  
-
+5. Abra o arquivo e, com o botão direito do mouse, selecione **Run Java** para iniciar o programa. 
+6. Para acessar o programa, é necessário escolher entre o menu de **Médico** ou o menu de **Paciente**, ambos têm o mesmo Login de 001, que foi utilizado para debugar o código, contúdo, dentro do Menu de médicos, é possível cadastrar novos integrantes, que recebem logins automáticos baseados no **CPF** para o Paciente e o **CRM** para o médico, não permitindo duplicatas.
 ---
 
 ## 🎯 **Funcionalidades Principais**

@@ -25,7 +25,7 @@ public class Main {
             System.out.println(p.getCPF());
         }
 
-        Medico medico = new Medico("Jorge", "010", "25/02/2025", "001", "consulta");
+        Medico medico = new Medico("teste", "010", "25/02/2025", "001", "consulta");
         cadM.cadastrarMed(medico);
 
         menu.iniciarMenu();
