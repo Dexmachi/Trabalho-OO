@@ -36,11 +36,11 @@ public class Medico extends Pessoa {
         {
             for (Consulta b : this.consultas)
             {
-                if (b.getAtendida())
+                if (!b.getAtendida())
                 {
                     JOptionPane.showMessageDialog(null, "Você tem uma consulta agendada para o dia: " + b.getData() + " às: " + b.getHorario() + " de " + b.getEspecialidade() + " com o Paciente: " + b.getPac().getNome() + "\n");
                 }
-                else if (!b.getAtendida())
+                else if (b.getAtendida())
                 {
                     JOptionPane.showMessageDialog(null, "Você atendeu à uma consulta no dia: " + b.getData() + " às: " + b.getHorario() + " de " + b.getEspecialidade() + " com o Paciente: " + b.getPac().getNome() + "\n");
                 }
